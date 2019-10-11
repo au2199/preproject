@@ -5,6 +5,7 @@ class Controller extends CI_Controller
 {
 	public function __construct()
 	{
+		$state = false;
 		parent::__construct();
 		$this->load->helper('url');
 	}
@@ -127,7 +128,8 @@ class Controller extends CI_Controller
 		$this->load->model('model');
 		$data_grp['show_grp'] = $this->model->m_show_group();
 		$data_tch['show_tch'] = $this->model->m_show_teacher();
-		$data['show'] = array($data_grp['show_grp'], $data_tch['show_tch']);
+		$data_sta['show_sta'] = array('state' => '');
+		$data['show'] = array($data_grp['show_grp'], $data_tch['show_tch'], $data_sta['show_sta']);
 		$this->load->view('pages/other/commit_show', $data);
 	}
 	public function myGroup()
@@ -295,6 +297,8 @@ class Controller extends CI_Controller
 						'student_student_id_3' => $this->input->post('student_student_id_3'),
 						'request_request_id' => $row_request->request_id,
 						'score_score_id' => $row_score->score_id,
+						'teacher_commit_id_1' => $this->input->post('teacher_id'),
+						'teacher_commit_id_2' => $this->input->post('teacher_id'),
 					);
 				} else {
 					$data = array(
@@ -309,6 +313,8 @@ class Controller extends CI_Controller
 						'student_student_id_3' => $this->input->post('student_student_id_1'),
 						'request_request_id' => $row_request->request_id,
 						'score_score_id' => $row_score->score_id,
+						'teacher_commit_id_1' => $this->input->post('teacher_id'),
+						'teacher_commit_id_2' => $this->input->post('teacher_id'),
 					);
 				}
 				$this->load->model('model');
@@ -386,10 +392,6 @@ class Controller extends CI_Controller
 	/* #################################################################################################################### */
 	/* #################################################################################################################### */
 	/* #################################################################################################################### */
-	public function map()
-	{
-		$this->load->view('pages/map');
-	}
 	/*
 	public function news()
 	{

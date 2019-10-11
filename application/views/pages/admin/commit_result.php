@@ -52,6 +52,21 @@ $topic = "ผลการเลือกกรรมการ(admin)";
 <!--############################################## Body ###########################################################################-->
 
 <body>
+    <?php
+    $state = false; // recieve if admin click 'confirm button' /commit_result
+    $show_grp = $show[0];
+    $show_tch = $show[1];
+    $group_ids = array();
+    $name_projects = array();
+    $fnames = array();
+    foreach ($show_grp->result() as $row_grp) {
+        array_push($group_ids, $row_grp->group_id);
+        array_push($name_projects, $row_grp->name_project);
+    }
+    foreach ($show_tch->result() as $row_tch) {
+        array_push($fnames, $row_tch->fname);
+    }
+    ?>
     <div class="container-fluid text-center">
         <div class="row">
             <!-- Bar -->
@@ -66,45 +81,59 @@ $topic = "ผลการเลือกกรรมการ(admin)";
                 <div class="container-fluid well">
                     <!-- Body -->
                     <?php
-                    $show_grp = $show[0];
-                    $show_tch = $show[1];
-                    $name_projects = array();
-                    $fnames = array();
-                    foreach ($show_grp->result() as $row_grp) {
-                        array_push($name_projects, $row_grp->name_project);
-                    }
-                    foreach ($show_tch->result() as $row_tch) {
-                        array_push($fnames, $row_tch->fname);
-                    }
-                    ?>
-                    <table class="table table-bordered table-striped">
-                        <tr>
-                            <th>
-                                <center>กลุ่ม</center>
-                            </th>
-                            <th>
-                                <center>กรรมการ</center>
-                            </th>
-                            <th>
-                                <center>กรรมการ</center>
-                            </th>
-                        </tr>
+                    if ($state) {
+                        echo "<div><center><h3>อยู่ระหว่างการดำเนินการ</h3></center</div>";
+                    } else {
+                        ?>
+                        <table class="table table-bordered table-striped">
+                            <tr>
+                                <th>
+                                    <center>กลุ่ม</center>
+                                </th>
+                                <th>
+                                    <center>กรรมการ</center>
+                                </th>
+                                <th>
+                                    <center>กรรมการ</center>
+                                </th>
+                            </tr>
                         <?php
-                        for ($i = 0; $i < sizeof($name_projects); $i++) {
-                            $c = $i;
-                            if ($c >= sizeof($fnames) - 2) {
-                                $c = sizeof($fnames) - (sizeof($fnames) - 2);
+                            for ($i = 0; $i < sizeof($name_projects); $i++) {
+                                $c = $i;
+                                $c1 = "";
+                                $c2 = "";
+                                $name_c1 = "";
+                                $name_c2 = "";
+                                if ($c >= sizeof($fnames) - 2) {
+                                    $c = sizeof($fnames) - (sizeof($fnames) - 2);
+                                }
+                                foreach ($show_grp->result() as $row_grp) {
+                                    if ($row_grp->group_id == $group_ids[$i]) {
+                                        $c1 = $row_grp->teacher_commit_id_1;
+                                        $c2 = $row_grp->teacher_commit_id_2;
+                                    }
+                                }
+                                foreach ($show_tch->result() as $row_tch) {
+                                    if ($row_tch->teacher_id == $c1) {
+                                        $name_c1 = $row_tch->fname;
+                                    }
+                                    if ($row_tch->teacher_id == $c2) {
+                                        $name_c2 = $row_tch->fname;
+                                    }
+                                }
+                                echo "<tr>
+                                        <td>" . $name_projects[$i] . "</td>
+                                        <td>" . $name_c1 . "</td>
+                                        <td>" . $name_c2 . "</td>
+                                    </tr>";
                             }
-                            echo "<tr>
-                            <td>" . $name_projects[$i] . "</td>
-                            <td>" . $fnames[$c] . "</td>
-                            <td>" . $fnames[$c + 1] . "</td>
-                        </tr>";
                         }
                         ?>
-                    </table>
-                    <button class="btn colora">Accept</button>
-                    <!-- Body -->
+                        </table>
+                        <form action="<?= base_url('Controller/commit_result') ?>" method='post'>
+                            <button name='submit' class="btn colora" value='true'>ยืนยัน</button>
+                        </form>
+                        <!-- Body -->
                 </div>
             </div>
         </div>
