@@ -67,3 +67,6 @@ A importdata_admin
 <a href="<?= base_url('Controller/importdata_admin') ?>"> นำข้อมูลเข้า(admin)
     <!-- <img src="<?= base_url('./image/importdata_admin.png') ?>" class="img-circle" height="65" width="65" alt="Avatar"> -->
 </a><br>
+<a href="<?= base_url('Controller/test_show') ?>"> ดูคะแนน(other)
+    <!-- <img src="<?= base_url('./image/importdata_admin.png') ?>" class="img-circle" height="65" width="65" alt="Avatar"> -->
+</a><br>

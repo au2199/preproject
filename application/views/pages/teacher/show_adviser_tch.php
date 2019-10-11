@@ -76,12 +76,12 @@ $topic = "โปรเจคในที่ปรึกษา(teacher)";
 	// echo "<pre>";
 	// print_r($data);
 	// echo $data[8][3];
-	// $VAR[GROUP][MODE] 
-	// 0 -> ID, 
-	// 1 -> NAME PROJECTM, 
-	// 2 -> TEACHER ID, 
-	// 3 -> STUDENT ID #1, 
-	// 4 -> STUDENT ID #2, 
+	// $VAR[GROUP][MODE]
+	// 0 -> ID,
+	// 1 -> NAME PROJECTM,
+	// 2 -> TEACHER ID,
+	// 3 -> STUDENT ID #1,
+	// 4 -> STUDENT ID #2,
 	// 5 -> STUDENT ID #3
 	?>
 	<div class="container-fluid text-center">

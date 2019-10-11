@@ -3,7 +3,7 @@
 
 <?php
 $web = "KUCPE";
-$topic = "เลือกเป็นกรรมการ(teacher)";
+$topic = "ดูคะแนน(other)";
 
 ?>
 
@@ -53,12 +53,29 @@ $topic = "เลือกเป็นกรรมการ(teacher)";
 
 <body>
     <?php
-    $prioritys = array();
+    $weight_document = 0.5;
+    $weight_knowledge = 0.5;
+    $weight_completly = 0.5;
+    $weight_present = 0.5;
+    $show_grp = $show[0];
+    $show_sco = $show[1];
     $group_ids = array();
     $name_projects = array();
-    foreach ($show->result() as $row) {
-        array_push($group_ids, $row->group_id);
-        array_push($name_projects, $row->name_project);
+    $score_ids = array();
+    $score_documents = array();
+    $score_knowledges = array();
+    $score_completlys = array();
+    $score_presents = array();
+    foreach ($show_grp->result() as $row_grp) {
+        array_push($group_ids, $row_grp->group_id);
+        array_push($name_projects, $row_grp->name_project);
+    }
+    foreach ($show_sco->result() as $row_sco) {
+        array_push($score_ids, $row_sco->score_id);
+        array_push($score_documents, $row_sco->document);
+        array_push($score_knowledges, $row_sco->knowledge);
+        array_push($score_completlys, $row_sco->completly);
+        array_push($score_presents, $row_sco->present);
     }
     ?>
     <div class="container-fluid text-center">
@@ -74,46 +91,40 @@ $topic = "เลือกเป็นกรรมการ(teacher)";
                 </div>
                 <div class="container-fluid well">
                     <!-- Body -->
-                    <form action="<?= base_url('Controller/cal_sel_commit_tch') ?>" method='post'>
-                        <table class='table table-bordered table-striped'>
-                            <thead>
-                                <tr>
-                                    <th>
-                                        <center>กลุ่มที่</center>
-                                    </th>
-                                    <th>
-                                        <center>ชื่อ project</center>
-                                    </th>
-                                    <th>
-                                        <center>ต้องการเป็นกรรมการอันดับที่</center>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php for ($i = 0; $i < sizeof($group_ids); $i++) {
-                                    echo "<tr>
-                                    <td class='colora'>$group_ids[$i]</td>
+                    <table class="table table-bordered table-striped ">
+                        <tr>
+                            <th>
+                                <center>กลุ่ม</center>
+                            </th>
+                            <th>
+                                <center>คะแนนเล่มโครงงาน</center>
+                            </th>
+                            <th>
+                                <center>คะแนนความรู้ในโครงงาน</center>
+                            </th>
+                            <th>
+                                <center>ความสมบูรณ์ของชิ้นงาน</center>
+                            </th>
+                            <th>
+                                <center>การนําเสนอ</center>
+                            </th>
+                        </tr>
+                        <?php
+                        for ($i = 0; $i < sizeof($group_ids); $i++) {
+                            $score_document = $score_documents[$i] * $weight_document;
+                            $score_knowledge = $score_knowledges[$i] * $weight_knowledge;
+                            $score_completly = $score_completlys[$i] * $weight_completly;
+                            $score_present = $score_presents[$i] * $weight_present;
+                            echo "<tr>
                                     <td>$name_projects[$i]</td>
-                                    <td><input list='browsers' name='$group_ids[$i]' class='form-control' value=''></td>
-                                    </tr>";
-                                } ?>
-                            </tbody>
-                        </table>
-                        <datalist id="browsers">
-                            <?php for ($i = 1; $i <= sizeof($group_ids); $i++) {
-                                echo "<tr>
-                                        <td>'<option>$i</option>' ?></td>
-                                    </tr>";
-                            }
-                            ?>
-                        </datalist>
-                        <div>
-                            <br>
-                            <?php $size = sizeof($group_ids);
-                                echo"<button name='submit' class='btn colora' value='$size'>ยืนยัน</button>";
-                            ?>
-                        </div>
-                    </form>
+                                    <td>$score_document</td>
+                                    <td>$score_knowledge</td>
+                                    <td>$score_completly</td>
+                                    <td>$score_present</td>
+                                </tr>";
+                        }
+                        ?>
+                    </table>
                     <!-- Body -->
                 </div>
             </div>
@@ -121,10 +132,10 @@ $topic = "เลือกเป็นกรรมการ(teacher)";
     </div>
 </body>
 <!--############################################## Footer ###########################################################################-->
+
 <footer>
     <div id='ui_footer'></div>
 </footer>
-
 <!--############################################## End ###########################################################################-->
 
 </html>

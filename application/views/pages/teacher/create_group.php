@@ -65,7 +65,8 @@ $topic = "สร้างโปรเจค(teacher)";
 <!--############################################## Body ###########################################################################-->
 
 <body>
-    <?php $teacher_id = 1;
+    <?php
+    $teacher_id = 1;
     $error = 0;
     $show_std = $show[0];
     $show_err = $show[1];
@@ -98,7 +99,7 @@ $topic = "สร้างโปรเจค(teacher)";
                         <input name="teacher_id" value="<?php echo rand(1,6) ?>" style="display: none"> <!-- SEND DATA 'teacher_id' TO CONTROLLER -->
                         <!-- <input type='text' name='teacher_teacher_id' value='' placeholder='teacher_teacher_id'> -->
                         <div class="row">
-                            <div class="col table table-bordered table-striped " ">
+                            <div class="col table table-bordered table-striped">
                                 <br>
                                 <p style=" font-size:20px;"><b>ชื่อ project</b></p>
                                 <input type='text' name='name_project' class="form-control" value='' placeholder='name_project'>
@@ -106,7 +107,7 @@ $topic = "สร้างโปรเจค(teacher)";
                                 <input type='text' name='info_project' class="form-control" value='' placeholder='info_project'>
 
                             </div>
-                            <div class="col table table-bordered table-striped " ">
+                            <div class="col table table-bordered table-striped">
                                 <!-- <input type='text' name='info_project' value='' placeholder='info_project'> -->
                                 <br>
                                 <p style=" font-size:20px;"><b>ชื่อสมาชิก</b></p>

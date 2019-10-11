@@ -46,66 +46,74 @@ $topic = "ให้คะแนน(teacher)";
 
 <!--############################################## Header ###########################################################################-->
 <header style="height: 12.7vh">
-	<div id='ui_main'></div>
+    <div id='ui_main'></div>
 </header>
 
 <!--############################################## Body ###########################################################################-->
 
 <body>
-	<div class="container-fluid text-center">
-		<div class="row">
-			<!-- Bar -->
-			<div class="col-sm-2 colora" style="min-height: 87.3vh">
-				<div id='ui_tab'></div>
-			</div>
-			<!-- End Bar -->
-			<div class="col-sm-10 text-left bgimg">
-				<div class="colora" style="padding: 10px">
-					<h2><?php echo $topic ?></h2>
-				</div>
-				<div class="container-fluid well">
-					<!-- Body -->
-                    <select class="form-control">
-                        <?php
-                        $group_ids = array();
-                        $name_projects = array();
-                        foreach ($show->result() as $row) {
-                            array_push($group_ids, $row->group_id);
-                            array_push($name_projects, $row->name_project);
-                        }
-                        for ($i = 0; $i < sizeof($group_ids); $i++) {
-                            // echo "<option>" . $group_ids[$i] . "</option>";
-                            echo "<option>" . $name_projects[$i] . "</option>";
-                        }
-                        ?>
-                    </select>
-                    <table class="table table-bordered table-striped ">
-                        <tr>
-                            <th>หัวข้อ</th>
-                            <th>คะแนน</th>
-                        </tr>
-                        <tr>
-                            <td>คะแนนเล่มโครงงาน</td>
-                            <td><input class="form-control" type="text" name="" value="25"></td>
-                        </tr>
-                        <tr>
-                            <td>คะแนนความรู้ในโครงงาน</td>
-                            <td><input class="form-control" type="text" name="" value="25"></td>
-                        </tr>
-                        <tr>
-                            <td>ความสมบูรณ์ของชิ</td>
-                            <td><input class="form-control" type="text" name="" value="25"></td>
-                        </tr>
-                        <tr>
-                            <td>การนําเสนอ</td>
-                            <td><input class="form-control" type="text" name="" value="25"></td>
-                        </tr>
-                        <tr>
-                            <td>เกรดที</td>
-                            <td>A</td>
-                        </tr>
-                    </table>
-                    <button class="btn btn-success">Accept</button>
+    <?php
+    $group_ids = array();
+    $name_projects = array();
+    foreach ($show->result() as $row) {
+        array_push($group_ids, $row->group_id);
+        array_push($name_projects, $row->name_project);
+    }
+    ?>
+    <div class="container-fluid text-center">
+        <div class="row">
+            <!-- Bar -->
+            <div class="col-sm-2 colora" style="min-height: 87.3vh">
+                <div id='ui_tab'></div>
+            </div>
+            <!-- End Bar -->
+            <div class="col-sm-10 text-left bgimg">
+                <div class="colora" style="padding: 10px">
+                    <h2><?php echo $topic ?></h2>
+                </div>
+                <div class="container-fluid well">
+                    <!-- Body -->
+                    <form action="<?= base_url('Controller/update_score') ?>" method='post'>
+                        <input list="browsers" name="group_name" class="form-control" value=''>
+                        <datalist id="browsers">
+                            <?php foreach ($show->result() as $row) : ?>
+                                <tr>
+                                    <td><?php echo "<option>" . $row->name_project  . "</option>" ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </datalist>
+                        <table class="table table-bordered table-striped ">
+                            <tr>
+                                <th>
+                                    <center>หัวข้อ</center>
+                                </th>
+                                <th>
+                                    <center>คะแนน</center>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>คะแนนเล่มโครงงาน</td>
+                                <td><input class="form-control" type="text" name="score_document" value="" placeholder='max 25'></td>
+                            </tr>
+                            <tr>
+                                <td>คะแนนความรู้ในโครงงาน</td>
+                                <td><input class="form-control" type="text" name="score_knowledge" value="" placeholder='max 25'></td>
+                            </tr>
+                            <tr>
+                                <td>ความสมบูรณ์ของชิ้นงาน</td>
+                                <td><input class="form-control" type="text" name="score_completly" value="" placeholder='max 25'></td>
+                            </tr>
+                            <tr>
+                                <td>การนําเสนอ</td>
+                                <td><input class="form-control" type="text" name="score_present" value="" placeholder='max 25'></td>
+                            </tr>
+                            <!-- <tr>
+                                <td>เกรด</td>
+                                <td><?php echo "A" ?></td>
+                            </tr> -->
+                        </table>
+                        <button name='submit' class="btn colora" value='update_score'>ยืนยัน</button>
+                    </form>
                     <!-- Body -->
                 </div>
             </div>

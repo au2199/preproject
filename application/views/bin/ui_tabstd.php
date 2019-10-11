@@ -22,6 +22,9 @@ commit_show
 <a href="<?= base_url('Controller/commit_show') ?>"> กรรมการ(ส่วนรวม)
   <!-- <img src="<?= base_url('./image/img_home.png') ?>" class="img-circle" height="65" width="65" alt="Avatar"> -->
 </a><br>
+<a href="<?= base_url('Controller/test_show') ?>"> ดูคะแนน(other)
+    <!-- <img src="<?= base_url('./image/importdata_admin.png') ?>" class="img-circle" height="65" width="65" alt="Avatar"> -->
+</a><br>
 <a href="<?= base_url('Controller/logout') ?>"> ออกจากระบบ
   <!-- <img src="<?= base_url('./image/img_logout.png') ?>" class="img-circle" height="65" width="65" alt="Avatar"> -->
 </a><br>

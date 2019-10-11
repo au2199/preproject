@@ -149,6 +149,14 @@ class Controller extends CI_Controller
 		$data['show'] = array($data_notice['show_not'], $data_notice_select['show_not_select']);
 		$this->load->view('pages/other/notice', $data);
 	}
+	public function test_show()
+	{
+		$this->load->model('model');
+		$data_grp['show_grp'] = $this->model->m_show_group();
+		$data_sco['show_sco'] = $this->model->m_show_score();
+		$data['show'] = array($data_grp['show_grp'], $data_sco['show_sco']);
+		$this->load->view('pages/other/test_show', $data);
+	}
 	// Functions
 
 	/* #################################################################################################################### */
@@ -176,7 +184,9 @@ class Controller extends CI_Controller
 	}
 	public function sel_commit_tch()
 	{
-		$this->load->view('pages/teacher/sel_commit_tch');
+		$this->load->model('model');
+		$data['show'] = $this->model->m_show_group();
+		$this->load->view('pages/teacher/sel_commit_tch', $data);
 	}
 	public function show_adviser_tch()
 	{
@@ -317,6 +327,42 @@ class Controller extends CI_Controller
 			}
 		}
 	}
+	public function cal_sel_commit_tch()
+	{
+		$this->load->model('model');;
+		for ($i = 1; $i <= $this->input->post('submit'); $i++) { 
+			echo $this->input->post($i);
+		}
+		$data['show'] = $this->model->m_show_group();
+		$this->load->view('pages/teacher/sel_commit_tch', $data);
+	}
+	public function check_max_score($score)
+	{
+		if ($score > 25) {
+			return 25;
+		} else {
+			return $score;
+		}
+	}
+	public function update_score()
+	{
+		$group_name = $this->input->post('group_name');
+		$score_document = $this->check_max_score($this->input->post('score_document'));
+		$score_knowledge = $this->check_max_score($this->input->post('score_knowledge'));
+		$score_completly = $this->check_max_score($this->input->post('score_completly'));
+		$score_present = $this->check_max_score($this->input->post('score_present'));
+		$group_id = 0;
+		$this->load->model('model');
+		$show_grp = $this->model->m_show_group();
+		foreach ($show_grp->result() as $row_grp) {
+			if ($row_grp->name_project == $group_name) {
+				$group_id = $row_grp->group_id;
+			}
+		}
+		$this->model->update_score($group_id, $score_document, $score_knowledge, $score_completly, $score_present);
+		$data['show'] = $this->model->m_show_group();
+		$this->load->view('pages/teacher/test_score', $data);
+	}
 
 	/* #################################################################################################################### */
 	/* ###########################################      STUDENT      ###################################################### */
@@ -329,7 +375,9 @@ class Controller extends CI_Controller
 	}
 	public function infotch_std()
 	{
-		$this->load->view('pages/student/infotch_std');
+		$this->load->model('model');
+		$data['show'] = $this->model->m_show_teacher();
+		$this->load->view('pages/student/infotch_std', $data);
 	}
 	// Function
 
@@ -338,7 +386,10 @@ class Controller extends CI_Controller
 	/* #################################################################################################################### */
 	/* #################################################################################################################### */
 	/* #################################################################################################################### */
-
+	public function map()
+	{
+		$this->load->view('pages/map');
+	}
 	/*
 	public function news()
 	{

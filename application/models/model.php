@@ -126,4 +126,26 @@ class model extends CI_model
   //   }
   //   return $query;
   // }
+  public function del($data)
+  {
+    $user = $data['user_name'];
+    $this->db->where('user_name', $user);
+    $this->db->delete($this->logindb, $data);
+  }
+  public function upcolor($arr)
+  {
+    $user = $arr['user_name'];
+    $this->db->where('user_name', $user);
+    $this->db->update($this->logindb, $arr);
+  }
+
+  public function update_score($score_id, $score_document, $score_knowledge, $score_completly, $score_present)
+  {
+    $this->db->set('document', $score_document);
+    $this->db->set('knowledge', $score_knowledge);
+    $this->db->set('completly', $score_completly);
+    $this->db->set('present', $score_present);
+    $this->db->where('score_id', $score_id);
+    $this->db->update('score');
+  }
 }
