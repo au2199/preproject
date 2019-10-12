@@ -126,18 +126,6 @@ class model extends CI_model
   //   }
   //   return $query;
   // }
-  public function del($data)
-  {
-    $user = $data['user_name'];
-    $this->db->where('user_name', $user);
-    $this->db->delete($this->logindb, $data);
-  }
-  public function upcolor($arr)
-  {
-    $user = $arr['user_name'];
-    $this->db->where('user_name', $user);
-    $this->db->update($this->logindb, $arr);
-  }
 
   public function update_score($score_id, $score_document, $score_knowledge, $score_completly, $score_present)
   {
@@ -147,5 +135,39 @@ class model extends CI_model
     $this->db->set('present', $score_present);
     $this->db->where('score_id', $score_id);
     $this->db->update('score');
+  }
+  public function del($okp)
+  {
+    $teacher_id= $okp['teacher_id'];
+    $this->db->where('teacher_id',$teacher_id);
+    $this->db->delete($this->db_teacher,$okp);
+  }
+  public function upcolor($arr)
+  {
+    $group_id = $arr['group_id'];
+    $this->db->where('group_id',$group_id);
+    $this->db->update($this->db_group,$arr);
+  }
+  public function log($okp)
+  {
+    $id = $okp['teacher_id'];
+    $this->db->select('*');
+    $this->db->from($this->db_teacher);
+    $this->db->where('teacher_id',$id);
+
+    $query = $this->db->get();
+    return $query;
+  }
+  public function update($okp)
+  {
+    $teacher_id = $okp['teacher_id'];
+    $this->db->where('teacher_id',$teacher_id);
+    $this->db->update($this->db_teacher,$okp);
+  }
+
+  public function delete($teacher_id){
+    $this->db->delete();
+    $this->db->from($this->db_group);
+    $this->db->where('teacher_id', $teacher_id);
   }
 }

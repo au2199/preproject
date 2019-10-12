@@ -114,6 +114,53 @@ class Controller extends CI_Controller
 		$this->load->view('pages/admin/home_admin', $data);
 	}
 
+	public function datastd_ad()
+	{
+		$this->load->model('model');
+		$data['show'] = $this->model->m_show_student();
+
+		$this->load->view('pages/admin/datastd_ad',$data);
+	}
+	public function datatch_ad()
+	{
+		$btn = $this->input->post('up');
+		$teacher_id = $this->input->post('ID');
+		$title = $this->input->post('titleso');
+		$fname = $this->input->post('fnameso');
+		$lname = $this->input->post('lnameso');
+		$ability = $this->input->post('abilityso');
+		$email = $this->input->post('emailso');
+
+		$okp = array(
+									'teacher_id' => $this->input->post('ID'),
+                  'title' => $this->input->post('titleso'),
+                  'fname' => $this->input->post('fnameso'),
+									'lname' => $this->input->post('lnameso'),
+									'ability' => $this->input->post('abilityso'),
+									'email' => $this->input->post('emailso')
+                  );
+		$this->load->model('model');
+		$data['show'] = $this->model->m_show_teacher();
+		$this->load->view('pages/admin/datatch_ad',$data);
+
+		$result = $this->model->log($okp);
+		// echo "<pre>";print_r($result);
+	 if($btn == 'up')
+	 {
+			 if($teacher_id == $result->row('teacher_id'))
+			 {
+				 $this->model->update($okp);
+				 // echo "<script type='text/javascript'>alert('update password success');</script> ";
+				  redirect(base_url('Controller/datatch_ad'));
+					echo "<script type='text/javascript'>alert('update password success');</script> ";
+			 }
+			 else
+			 {
+				 echo "<script type = 'text/javascript'>alert('no data in system');</script>";
+			 }
+	 }
+	}
+
 	/* #################################################################################################################### */
 	/* ###########################################      OTHER      ######################################################## */
 	// Pages
@@ -336,7 +383,7 @@ class Controller extends CI_Controller
 	public function cal_sel_commit_tch()
 	{
 		$this->load->model('model');;
-		for ($i = 1; $i <= $this->input->post('submit'); $i++) { 
+		for ($i = 1; $i <= $this->input->post('submit'); $i++) {
 			echo $this->input->post($i);
 		}
 		$data['show'] = $this->model->m_show_group();
