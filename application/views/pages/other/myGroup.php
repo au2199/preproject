@@ -83,7 +83,6 @@ $topic = "กลุ่มของฉัน(other)";
 			$teacher_name = $row_tch->fname . $row_tch->lname;
 			$teacher_email = $row_tch->email;
 		}
-		
 	}
 	?>
 	<div class="container-fluid text-center">
