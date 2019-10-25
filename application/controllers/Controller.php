@@ -532,8 +532,8 @@ class Controller extends CI_Controller
 		$this->load->model('model');
 		$show_grp = $this->model->m_show_group();
 		foreach ($show_grp->result() as $row_grp) {
-			if ($row_grp->name_project == $group_name) {
-				$group_id = $row_grp->group_id;
+				if ($row_grp->name_project == $group_name) {
+					$group_id = $row_grp->group_id;
 			}
 		}
 		$this->model->update_score($group_id, $score_document, $score_knowledge, $score_completly, $score_present);
