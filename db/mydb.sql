@@ -49,27 +49,13 @@ CREATE TABLE `group` (
 -- Table structure for table `lockbook`
 --
 
-CREATE TABLE `lockbook` (
-  `lock_id` int(11) NOT NULL,
-  `lock_adviser` text NOT NULL,
-  `lock_commit` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 --
 -- Dumping data for table `lockbook`
 --
 
-INSERT INTO `lockbook` (`lock_id`, `lock_adviser`, `lock_commit`) VALUES
-(1, 'www.googledrive.com', 'www.googledrive.com'),
-(2, 'www.googledrive.com', 'www.googledrive.com'),
-(3, 'www.googledrive.com', 'www.googledrive.com'),
-(4, 'www.googledrive.com', 'www.googledrive.com'),
-(5, 'www.googledrive.com', 'www.googledrive.com'),
-(6, 'www.googledrive.com', 'www.googledrive.com'),
-(7, 'www.googledrive.com', 'www.googledrive.com'),
-(8, 'www.googledrive.com', 'www.googledrive.com'),
-(9, 'www.googledrive.com', 'www.googledrive.com'),
-(10, 'www.googledrive.com', 'www.googledrive.com');
+
 
 -- --------------------------------------------------------
 

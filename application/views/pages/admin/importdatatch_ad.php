@@ -99,32 +99,34 @@ $topic = "นำข้อมูลเข้า(admin)";
 																 <?php endif; ?>
 
 																 <h2>Import data csv to mysql</h2>
-																		 <form method="post" action="<?=base_url('Controller/importcsv'); ?>" enctype="multipart/form-data">
+																		 <form method="post" action="<?=base_url('Controller/importcsvtch'); ?>" enctype="multipart/form-data">
 																				 <input type="file" class="colora" name="userfile" ><br><br>
 																				 <input type="submit" name="submit" value="UPLOAD" class="btn btn-primary">
 																		 </form>
 																 <br><br>
 																 <table class="table table-striped table-hover table-bordered">
-																		 <caption>Data List student</caption>
+																		 <caption>Data List teacher</caption>
 																		 <thead>
 																				 <tr>
+                                           <th>Type</th>
 																					 	<th>Title</th>
 																						 <th>First Name</th>
 																						 <th>Last Name</th>
-
+                                             <th>Ability</th>
 																						 <th>Email</th>
 																				 </tr>
 																		 </thead>
 																		 <tbody>
-																				 <?php if ($student == FALSE): ?>
+																				 <?php if ($teacher == FALSE): ?>
 																						 <tr><td colspan="4">There are currently No Addresses</td></tr>
 																				 <?php else: ?>
-																						 <?php foreach ($student as $row): ?>
+																						 <?php foreach ($teacher as $row): ?>
 																								 <tr>
+                                                   <td><?php echo $row['type']; ?></td>
 																									  <td><?php echo $row['title']; ?></td>
 																										 <td><?php echo $row['fname']; ?></td>
 																										 <td><?php echo $row['lname']; ?></td>
-
+                                                     <td><?php echo $row['ability']; ?></td>
 																										 <td><?php echo $row['email']; ?></td>
 																										 <!-- <td><?php echo $row['gender']; ?></td>
 																										 <td><?php echo $row['cnt_address']; ?></td> -->

@@ -8,6 +8,9 @@ class Controller extends CI_Controller
 		$state = false;
 		parent::__construct();
 		$this->load->helper('url');
+
+		$this->load->library('csvimport');
+		$this->load->model('csv_model');
 	}
 
 	/* #################################################################################################################### */
@@ -72,10 +75,7 @@ class Controller extends CI_Controller
 		$data['show'] = $this->model->m_show_notice();
 		$this->load->view('pages/admin/home_admin', $data);
 	}
-	public function importdata_admin()
-	{
-		$this->load->view('pages/admin/importdata_admin');
-	}
+
 	public function control_room()
 	{
 		// $this->load->model('model');
@@ -123,7 +123,8 @@ class Controller extends CI_Controller
 	}
 	public function datatch_ad()
 	{
-		$btn = $this->input->post('up');
+		$btnup = $this->input->post('up');
+		$btndel = $this->input->post('del');
 		$teacher_id = $this->input->post('ID');
 		$title = $this->input->post('titleso');
 		$fname = $this->input->post('fnameso');
@@ -131,7 +132,7 @@ class Controller extends CI_Controller
 		$ability = $this->input->post('abilityso');
 		$email = $this->input->post('emailso');
 
-		$okp = array(
+		$uparr = array(
 									'teacher_id' => $this->input->post('ID'),
                   'title' => $this->input->post('titleso'),
                   'fname' => $this->input->post('fnameso'),
@@ -139,17 +140,18 @@ class Controller extends CI_Controller
 									'ability' => $this->input->post('abilityso'),
 									'email' => $this->input->post('emailso')
                   );
+
 		$this->load->model('model');
 		$data['show'] = $this->model->m_show_teacher();
 		$this->load->view('pages/admin/datatch_ad',$data);
 
-		$result = $this->model->log($okp);
-		// echo "<pre>";print_r($result);
-	 if($btn == 'up')
+		$result = $this->model->log($uparr);
+		 // echo "<pre>";print_r($delarr);
+	 if($btnup == 'up')
 	 {
 			 if($teacher_id == $result->row('teacher_id'))
 			 {
-				 $this->model->update($okp);
+				 $this->model->update($uparr);
 				 // echo "<script type='text/javascript'>alert('update password success');</script> ";
 				  redirect(base_url('Controller/datatch_ad'));
 					echo "<script type='text/javascript'>alert('update password success');</script> ";
@@ -159,7 +161,129 @@ class Controller extends CI_Controller
 				 echo "<script type = 'text/javascript'>alert('no data in system');</script>";
 			 }
 	 }
+	 else if($btndel=='del')
+	 {
+				 if($teacher_id == $result->row('teacher_id'))
+				 {
+					 $this->model->del($uparr);
+					 // redirect(base_url('Controller/datatch_ad'));
+						echo "<script type='text/javascript'>alert('delete success');</script> ";
+				 }
+				 else
+				 {
+					 echo "<script type = 'text/javascript'>alert('no data in system');</script>";
+				 }
+	 }
 	}
+	///////////start_csv////////////////
+	public function importdata_admin()
+	{
+		$this->load->model('model');
+		$data['student'] = $this->model->get_addressbook();
+		$this->load->view('pages/admin/importdata_admin',$data);
+		// $data['student'] = $this->csv_model->get_addressbook();
+		// $this->load->view('pages/admin/importdata_admin',$data);
+	}
+	public function importcsv()
+	{
+			$this->load->model('model');
+			$data['student'] = $this->model->get_addressbook();
+			$data['error'] = '';    //initialize image upload error array to empty
+
+			//convigure upload
+			$config['upload_path'] = './uploads/';
+			$config['allowed_types'] = '*';
+			$config['max_size'] = '1000';
+
+			$this->load->library('upload', $config);
+
+
+			// jika upload gagal, muncul error
+			if (!$this->upload->do_upload()) {
+					$data['error'] = $this->upload->display_errors();
+
+					$this->load->view('pages/admin/importdata_admin', $data);
+			} else {
+
+					//prosses upload csv berhasil serta memproses insert data ke database
+					$file_data = $this->upload->data();
+					$file_path =  './uploads/'.$file_data['file_name'];
+
+					if ($this->csvimport->get_array($file_path)) {
+							$csv_array = $this->csvimport->get_array($file_path);
+							foreach ($csv_array as $row) {
+									$insert_data = array(
+											'title'=>$row['title'],
+											'fname'=>$row['fname'],
+											'lname'=>$row['lname'],
+											'email'=>$row['email'],
+									);
+									$this->load->model('model');
+									$this->model->insert_csv($insert_data);
+							}
+							$this->session->set_flashdata('success', 'Csv Data Imported Succesfully');
+							redirect(base_url().'Controller/importdata_admin');
+							// echo "<pre>"; print_r($insert_data);
+					} else
+							$data['error'] = "Error occured";
+							$this->load->view('pages/admin/importdata_admin', $data);
+					}
+		}
+	// end std//////////////////////
+	public function importdatatch_ad()
+	{
+			$this->load->model('model');
+			$data['teacher'] = $this->model->get_addresstch();
+			$this->load->view('pages/admin/importdatatch_ad',$data);
+	}
+	public function importcsvtch()
+	{
+					$this->load->model('model');
+					$data['teacher'] = $this->model->get_addresstch();
+					$data['error'] = '';    //initialize image upload error array to empty
+
+					//convigure upload
+					$config['upload_path'] = './uploads/';
+					$config['allowed_types'] = '*';
+					$config['max_size'] = '1000';
+
+					$this->load->library('upload', $config);
+
+
+					// jika upload gagal, muncul error
+					if (!$this->upload->do_upload()) {
+							$data['error'] = $this->upload->display_errors();
+
+							$this->load->view('pages/admin/importdatatch_ad', $data);
+					} else {
+
+							//prosses upload csv berhasil serta memproses insert data ke database
+							$file_data = $this->upload->data();
+							$file_path =  './uploads/'.$file_data['file_name'];
+
+							if ($this->csvimport->get_array($file_path)) {
+									$csv_array = $this->csvimport->get_array($file_path);
+									foreach ($csv_array as $row) {
+											$insert_data = array(
+													'type'=>$row['type'],
+													'title'=>$row['title'],
+													'fname'=>$row['fname'],
+													'lname'=>$row['lname'],
+													'ability'=>$row['ability'],
+													'email'=>$row['email'],
+											);
+											$this->load->model('model');
+											$this->model->inserttch_csv($insert_data);
+									}
+									$this->session->set_flashdata('success', 'Csv Data Imported Succesfully');
+									redirect(base_url().'Controller/importdatatch_ad');
+									// echo "<pre>"; print_r($insert_data);
+							} else
+									$data['error'] = "Error occured";
+									$this->load->view('pages/admin/importdatatch_ad', $data);
+							}
+		}
+	//////end_csv//////////////////
 
 	/* #################################################################################################################### */
 	/* ###########################################      OTHER      ######################################################## */

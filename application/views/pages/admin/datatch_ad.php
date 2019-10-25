@@ -79,6 +79,7 @@ $topic = "ข้อมูลนิสิต";
 						</div>
 						<!--//////////////////////////////////////////////////-->
 						<div class="row">
+							<div class="col-sm-12">
               <table class="table table-bordered table-striped well">
                 <thead>
                   <tr>
@@ -155,8 +156,6 @@ $topic = "ข้อมูลนิสิต";
 										<th><center>นามสกุล</center></th>
 										<th><center>ความถนัด</center></th>
 										<th><center>Email</center></th>
-										<th><center>Edit</center></th>
-										<th><center>Delete</center></th>
 									</tr>
 								</thead>
 								<tbody>
@@ -179,18 +178,17 @@ $topic = "ข้อมูลนิสิต";
 										<td>
 											<input type='text' name='emailso' value='' >
 										</td>
-										<td>
-											<button type='submit' class='btn-primary' name='up' value='up' >Edit</button>
-										</td>
-										<td>
-											<button type='submit' class='btn-danger' name='del' value='del' >Delete</button>
-										</td>
 
 									</tr>
 								</tdbody>
 							</table>
+							<td>
+								<button type='submit' class='btn-primary' name='up' value='up' >Edit</button>
+							</td>
+							<td>
+								<button type='submit' class='btn-danger' name='del' value='del' >Delete</button>
+							</td>
 
-						</div>
 
 <!-- <?php
 echo $count;
@@ -200,6 +198,7 @@ foreach ($show->result() as $row)
 }
 ?> -->
 					</form>
+					</div>
 				</div>
 			</div>
 		</div>

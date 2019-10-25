@@ -8,7 +8,10 @@ class model extends CI_model
   private $db_request = 'request';
   private $db_score = 'score';
   private $db_notice = 'notice';
-
+  public function __construct()
+  {
+      parent::__construct();
+  }
   public function insert_tch($data)
   {
     $this->db->insert($this->db_teacher, $data);
@@ -136,21 +139,16 @@ class model extends CI_model
     $this->db->where('score_id', $score_id);
     $this->db->update('score');
   }
-  public function del($okp)
-  {
-    $teacher_id= $okp['teacher_id'];
-    $this->db->where('teacher_id',$teacher_id);
-    $this->db->delete($this->db_teacher,$okp);
-  }
+
   public function upcolor($arr)
   {
     $group_id = $arr['group_id'];
     $this->db->where('group_id',$group_id);
     $this->db->update($this->db_group,$arr);
   }
-  public function log($okp)
+  public function log($uparr)
   {
-    $id = $okp['teacher_id'];
+    $id = $uparr['teacher_id'];
     $this->db->select('*');
     $this->db->from($this->db_teacher);
     $this->db->where('teacher_id',$id);
@@ -158,16 +156,47 @@ class model extends CI_model
     $query = $this->db->get();
     return $query;
   }
-  public function update($okp)
+  public function update($uparr)
   {
-    $teacher_id = $okp['teacher_id'];
+    $teacher_id = $uparr['teacher_id'];
     $this->db->where('teacher_id',$teacher_id);
-    $this->db->update($this->db_teacher,$okp);
+    $this->db->update($this->db_teacher,$uparr);
   }
 
-  public function delete($teacher_id){
-    $this->db->delete();
-    $this->db->from($this->db_group);
-    $this->db->where('teacher_id', $teacher_id);
+  public function del($uparr)
+  {
+    $teacher_id= $uparr['teacher_id'];
+    $this->db->where('teacher_id',$teacher_id);
+    $this->db->delete($this->db_teacher,$uparr);
   }
+  ////////importfilecsv//////////////////////////
+  public function get_addressbook()
+  {
+      $query = $this->db->get('student');
+      if ($query->num_rows() > 0) {
+          return $query->result_array();
+      } else {
+          return FALSE;
+      }
+  }
+  public function insert_csv($data)
+  {
+      $this->db->insert('student', $data);
+  }
+  // ////////end std////////////////
+  public function get_addresstch()
+  {
+      $query = $this->db->get('teacher');
+      if ($query->num_rows() > 0) {
+          return $query->result_array();
+      } else {
+          return FALSE;
+      }
+  }
+  public function inserttch_csv($data)
+  {
+      $this->db->insert('teacher', $data);
+  }
+  // ///////////////////end_importfilecsv///////////////////////////////
+
 }
