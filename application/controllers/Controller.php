@@ -379,11 +379,30 @@ class Controller extends CI_Controller
 		$data['show'] = $this->model->m_show_notice();
 		$this->load->view('pages/student/home_std', $data);
 	}
+	//public function infotch_std()
+	//{
+	//	$this->load->model('model');
+	//	$data['show'] = $this->model->m_show_teacher();
+	//	$this->load->view('pages/student/infotch_std', $data);
+	//}
+
 	public function infotch_std()
 	{
 		$this->load->model('model');
-		$data['show'] = $this->model->m_show_teacher();
-		$this->load->view('pages/student/infotch_std', $data);
+		$data['show'] = $this->model->m_show_group();
+		$this->load->view('pages/other/edit_project', $data);
+	}
+
+	// Pages
+	public function update_project()
+	{
+		$info_project = $this->input->post('info_project');
+		$name_project = $this->input->post('name_project');
+		$group_id = 1;
+		$this->load->model('model');
+		$this->model->update_project($info_project,$group_id,$name_project);
+		$data['show'] = $this->model->m_show_group();
+		$this->load->view('pages/other/edit_project', $data);
 	}
 	// Function
 
