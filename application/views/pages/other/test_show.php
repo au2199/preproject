@@ -53,10 +53,6 @@ $topic = "ดูคะแนน(other)";
 
 <body>
     <?php
-    $weight_document = 0.5;
-    $weight_knowledge = 0.5;
-    $weight_completly = 0.5;
-    $weight_present = 0.5;
     $show_grp = $show[0];
     $show_sco = $show[1];
     $group_ids = array();
@@ -111,10 +107,10 @@ $topic = "ดูคะแนน(other)";
                         </tr>
                         <?php
                         for ($i = 0; $i < sizeof($group_ids); $i++) {
-                            $score_document = $score_documents[$i] * $weight_document;
-                            $score_knowledge = $score_knowledges[$i] * $weight_knowledge;
-                            $score_completly = $score_completlys[$i] * $weight_completly;
-                            $score_present = $score_presents[$i] * $weight_present;
+                            $score_document = $score_documents[$i];
+                            $score_knowledge = $score_knowledges[$i];
+                            $score_completly = $score_completlys[$i];
+                            $score_present = $score_presents[$i];
                             echo "<tr>
                                     <td>$name_projects[$i]</td>
                                     <td>$score_document</td>

@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 
-$config['base_url'] = 'http://localhost:8080/preproject';//หรือ 127.0.0.1
+$config['base_url'] = 'http://localhost/preproject';//หรือ 127.0.0.1
 
 
 

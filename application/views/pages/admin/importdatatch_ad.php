@@ -85,10 +85,10 @@ $topic = "นำข้อมูลเข้า(admin)";
 										<div class="panel panel-default">
 											<div class="panel-body">
 
-												<div class="col-sm-6">
+												<div class="col-sm-12">
 
 
-														 <div class="container" style="margin-top:50px">
+														 <!-- <div class="container" style="margin-top:50px"> -->
 																	<br>
 
 																	<?php if (isset($error)): ?>
@@ -139,7 +139,7 @@ $topic = "นำข้อมูลเข้า(admin)";
 																 <!-- <footer>
 																		 <p>&copy;Contact</p>
 																 </footer> -->
-														 </div>
+														 <!-- </div> -->
 												</div>
 
 											</div>
