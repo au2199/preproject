@@ -22,7 +22,6 @@ $topic = "นำข้อมูลเข้านิสิต(admin)";
 	<!-- Latest compiled JavaScript -->
 	<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js'></script>
 	<script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js'></script>
-
 	<link rel="stylesheet" href="<?php echo base_url() ?>css/style.css">
 	<meta name='viewport' content='width=device-width, initial-scale=1'>
 	<meta charset='utf-8'>
@@ -36,14 +35,13 @@ $topic = "นำข้อมูลเข้านิสิต(admin)";
 	<style media="screen">
 		.bgimg {
 			background-image: url('<?= base_url('./image/back_inweb.jpg') ?>');
-			min-height: 100%;
+			height: 100%;
 			background-position: center;
 			background-size: cover;
 			/* z-index: -1; */
 		}
 	</style>
-	<!-- <title><?php echo $web ?></title> -->
-	<title>Import Contact KK</title>
+	<title><?php echo $web ?></title>
 </head>
 
 <!--############################################## Header ###########################################################################-->
@@ -57,7 +55,7 @@ $topic = "นำข้อมูลเข้านิสิต(admin)";
 	<div class="container-fluid text-center">
 		<div class="row">
 			<!-- Bar -->
-			<div class="col-sm-2 colora" style="min-height: 87.3vh">
+			<div class="col-sm-2 colora" style="min-height: 100vh">
 				<div id='ui_tab'></div>
 			</div>
 			<!-- End Bar -->
@@ -67,27 +65,19 @@ $topic = "นำข้อมูลเข้านิสิต(admin)";
 				</div>
 				<div class="container-fluid well">
 					<!-- Body -->
-
 					<div class="row">
 						<div class="col-sm-4"></div>
-						<!-- ///////////////////////////////////////////////// -->
-						<div class="col-sm-4" style="text-align: center;">
-							<label>
-								<h1 style="color:black;">ปีการศึกษา 2562</h1>
-								<!--input type="text"-->
-							</label>
-							<!-- <label><h2>นำข้อมูลเข้านิสิต</h2> </label> -->
+						<div class="col-sm-4" style="text-align: center">
+							<h1 style="color:black;">ปีการศึกษา 2562</h1>
 						</div>
 						<div class="col-sm-4"></div>
 					</div>
-					<!--//////////////////////////////////////////////////-->
 					<div class="row">
-						<div class="col-sm-12 col-lg-12 col-md-12">
+						<div class="col-sm-12">
 							<div class="panel panel-default">
 								<div class="panel-body">
-									<div class="col-sm-12 col-lg-12 col-md-12">
+									<div class="col-sm-12 col-md-12">
 										<!-- <div class="container" style="margin-top:50px"> -->
-										<br>
 										<?php if (isset($error)) : ?>
 											<div class="alert alert-error"><?php echo $error; ?></div>
 										<?php endif; ?>
@@ -97,11 +87,11 @@ $topic = "นำข้อมูลเข้านิสิต(admin)";
 
 										<h2>Import data csv to mysql</h2>
 										<form method="post" action="<?= base_url('Controller/importcsv'); ?>" enctype="multipart/form-data">
-											<input type="file" class="colora " name="userfile"><br><br>
+											<input type="file" class="colora " name="userfile"><br>
 											<input type="submit" name="submit" value="UPLOAD" class="btn colora">
 										</form>
+										<br>
 
-										<br><br>
 										<table class="table table-striped table-hover table-bordered">
 											<caption>Data List Student</caption>
 											<thead>
@@ -131,17 +121,12 @@ $topic = "นำข้อมูลเข้านิสิต(admin)";
 															<td><?php echo $row['title']; ?></td>
 															<td><?php echo $row['fname']; ?></td>
 															<td><?php echo $row['lname']; ?></td>
-
 															<td><?php echo $row['email']; ?></td>
-															<!-- <td><?php echo $row['gender']; ?></td>
-															 <td><?php echo $row['cnt_address']; ?></td> -->
 														</tr>
 													<?php endforeach; ?>
 												<?php endif; ?>
 											</tbody>
 										</table>
-										<hr>
-										<!-- </div> -->
 									</div>
 								</div>
 							</div>
