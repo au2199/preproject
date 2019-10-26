@@ -1,3 +1,17 @@
+<<<<<<< HEAD
 title,fname,lname,email
 Mr.,3,boooi,okp@ku.th
 MS.,4,pokpo,pok@ku.th
+=======
+title,fname,lname,email,,,,"CONCATENATE(B2,C2,""@ku.th"")"
+Ms.,Mack ,Randolph,Mack Randolph@ku.th,,,,
+Ms.,Raees ,Gibbons,Raees Gibbons@ku.th,,,,
+Mr.,Dora ,Zhang,Dora Zhang@ku.th,,,,
+Ms.,Humza ,Parker,Humza Parker@ku.th,,,,
+Ms.,Cloe ,Delacruz,Cloe Delacruz@ku.th,,,,
+Mr.,Milo ,Nicholson,Milo Nicholson@ku.th,,,,
+Mr.,Elysha ,Mcdaniel,Elysha Mcdaniel@ku.th,,,,
+Mr.,Asiyah ,Grimes,Asiyah Grimes@ku.th,,,,
+Mr.,Daanish ,Redfern,Daanish Redfern@ku.th,,,,
+Ms.,Enya ,Wolfe,Enya Wolfe@ku.th,,,,
+>>>>>>> b8494abbdd2d9babe3310dcb6b53ca06334a06f2

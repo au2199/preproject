@@ -53,6 +53,10 @@ $topic = "ให้คะแนน(teacher)";
 
 <body>
     <?php
+    $weight_document = 0.5;
+    $weight_knowledge = 0.5;
+    $weight_completly = 0.5;
+    $weight_present = 0.5;
     $group_ids = array();
     $name_projects = array();
     foreach ($show->result() as $row) {
@@ -74,6 +78,13 @@ $topic = "ให้คะแนน(teacher)";
                 <div class="container-fluid well">
                     <!-- Body -->
                     <form action="<?= base_url('Controller/update_score') ?>" method='post'>
+                        <?php
+                        echo "<input style='display: none' name='weight_document' value='$weight_document'>
+                            <input style='display: none' name='weight_knowledge' value='$weight_knowledge'>
+                            <input style='display: none' name='weight_completly' value='$weight_completly'>
+                            <input style='display: none' name='weight_present' value='$weight_present'>
+                        ";
+                        ?>
                         <input list="browsers" name="group_name" class="form-control" value=''>
                         <datalist id="browsers">
                             <?php foreach ($show->result() as $row) : ?>

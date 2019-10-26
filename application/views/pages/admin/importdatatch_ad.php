@@ -85,7 +85,11 @@ $topic = "นำข้อมูลเข้าอาจารย์(admin)";
 										<div class="panel panel-default">
 											<div class="panel-body">
 
+<<<<<<< HEAD
 												<div class="col-sm-12 col-md-12">
+=======
+												<div class="col-sm-12">
+>>>>>>> b8494abbdd2d9babe3310dcb6b53ca06334a06f2
 
 
 														 <!-- <div class="container" style="margin-top:50px"> -->

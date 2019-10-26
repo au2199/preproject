@@ -43,6 +43,9 @@ A importdata_admin
 <a href="<?= base_url('Controller/test_score') ?>"> ให้คะแนน
     <!-- <img src="<?= base_url('./image/score.png') ?>" class="img-circle" height="65" width="65" alt="Avatar"> -->
 </a><br>
+<a href="<?= base_url('Controller/test_score_edit') ?>"> แก้ไข้ให้คะแนน(admin)
+    <!-- <img src="<?= base_url('./image/score.png') ?>" class="img-circle" height="65" width="65" alt="Avatar"> -->
+</a><br>
 <a href="<?= base_url('Controller/test_room') ?>"> ผลจัดห้องสอบ(ส่วนรวม)
     <!-- <img src="<?= base_url('./image/exams.png') ?>" class="img-circle" height="65" width="65" alt="Avatar"> -->
 </a><br>
