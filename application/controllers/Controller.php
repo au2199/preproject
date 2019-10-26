@@ -127,10 +127,80 @@ class Controller extends CI_Controller
 
 		$this->load->view('pages/admin/datastd_ad', $data);
 	}
-	public function datatch_ad()
+	public function editstd_ad($x='')
+	{
+		echo "Welcome".$x;
+		$data = array('student_id'=>$x);
+		$this->load->model('model');
+		// echo "<pre>"; print_r($data); // เอาไว้เช็คค่า id
+		$result['show'] = $this->model->r_show_student($data);
+		// echo "<pre>"; print_r($result); //ดูค่าในข้อมูลที่ส่งมา
+		$this->load->view('pages/admin/editstd_ad',$result);
+	}
+	public function update_std()
 	{
 		$btnup = $this->input->post('up');
-		$btndel = $this->input->post('del');
+		$btncan = $this->input->post('can');
+		$student_id = $this->input->post('ID');
+		$title = $this->input->post('title');
+		$fname = $this->input->post('fname');
+		$lname = $this->input->post('lname');
+		$email = $this->input->post('email');
+
+		$uparr = array(
+									'student_id' => $this->input->post('ID'),
+                  'title' => $this->input->post('title'),
+                  'fname' => $this->input->post('fname'),
+									'lname' => $this->input->post('lname'),
+									'email' => $this->input->post('email')
+                  );
+
+		$this->load->model('model');
+		// $result = $this->model->log($uparr);
+		 // echo "<pre>";print_r($delarr);
+	 if($btnup == 'up')
+	 {
+				 $this->model->update_std($uparr);
+				 // echo "<script type='text/javascript'>alert('update password success');</script> ";
+				 redirect(base_url('Controller/datastd_ad'));
+	 }
+	 else if($btncan =='can')
+	 {
+				 redirect(base_url('Controller/datastd_ad'));
+	 }
+	}
+	public function delstd_ad($x='')
+	{
+		// echo $x;
+		$data = array('student_id'=>$x);
+		$this->load->model('model');
+		// echo "<pre>"; print_r($data); // เอาไว้เช็คค่า id
+		$this->model->delstd_ad($data);
+		echo "<script type='text/javascript'>alert('delete password success');</script> ";
+		redirect(base_url('Controller/datastd_ad'));
+	}
+	// //////////////////////end edit std//////////////////
+	////////////////// start edit del teacher/////////////////////
+	public function datatch_ad()
+	{
+		$this->load->model('model');
+		$data['show'] = $this->model->m_show_teacher();
+		$this->load->view('pages/admin/datatch_ad',$data);
+	}
+	public function edittch_ad($x='')
+	{
+		// echo "Welcome".$x;
+		$data = array('teacher_id'=>$x);
+		$this->load->model('model');
+		// echo "<pre>"; print_r($data); // เอาไว้เช็คค่า id
+		$result['show'] = $this->model->r_show_teacher($data);
+		// echo "<pre>"; print_r($result); //ดูค่าในข้อมูลที่ส่งมา
+		$this->load->view('pages/admin/edittch_ad',$result);
+	}
+	public function update_tch()
+	{
+		$btnup = $this->input->post('up');
+		$btncan = $this->input->post('can');
 		$teacher_id = $this->input->post('ID');
 		$title = $this->input->post('titleso');
 		$fname = $this->input->post('fnameso');
@@ -147,6 +217,22 @@ class Controller extends CI_Controller
 			'email' => $this->input->post('emailso')
 		);
 
+			$this->load->model('model');
+		 if($btnup == 'up')
+		 {
+					 $this->model->update_tch($uparr);
+					 // echo "<script type='text/javascript'>alert('update password success');</script> ";
+					 redirect(base_url('Controller/datatch_ad'));
+		 }
+		 else if($btncan =='can')
+		 {
+					 redirect(base_url('Controller/datatch_ad'));
+		 }
+	}
+	public function deltch_ad($x='')
+	{
+		// echo $x;
+		$data = array('teacher_id'=>$x);
 		$this->load->model('model');
 		$data['show'] = $this->model->m_show_teacher();
 		$this->load->view('pages/admin/datatch_ad', $data);
@@ -195,6 +281,8 @@ class Controller extends CI_Controller
 		$data['show'] = array($data_grp['show_grp'], $data_sco['show_sco']);
 		$this->load->view('pages/admin/test_score_edit', $data);
 	}
+
+	// /////////////////////////end edit del teacher//////////////////
 	///////////start_csv////////////////
 	public function importdata_admin()
 	{
@@ -304,6 +392,7 @@ class Controller extends CI_Controller
 		}
 	}
 	//////end_csv//////////////////
+	// okpokpokpokpokpokpokpokpokpokp//
 
 	/* #################################################################################################################### */
 	/* ###########################################      OTHER      ######################################################## */

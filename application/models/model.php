@@ -198,5 +198,58 @@ class model extends CI_model
       $this->db->insert('teacher', $data);
   }
   // ///////////////////end_importfilecsv///////////////////////////////
+  //////////////// edit datastd_ad////////////////////////////
+  public function r_show_student($data)
+  {
+    $student_id = $data['student_id'];
+    $this->db->select("*");
+    $this->db->from("student");
+    $this->db->where('student_id',$student_id);
+    $query = $this->db->get();
+    // foreach ($query->result() as $row)
+    // {
+    //          echo  "ID is ".$row->student_id."<br>";
+    //         echo "password is ".$row->fname."<br><br>";
+    //          echo $row->lname."<br><br>"; //แสดงค่า user_pass ทั้งหมด
+    // }
+
+    return $query;
+  }
+  public function update_std($uparr)
+  {
+    $student_id = $uparr['student_id'];
+    $this->db->where('student_id',$student_id);
+    $this->db->update($this->db_student,$uparr);
+  }
+  public function delstd_ad($uparr)
+  {
+    $student_id= $uparr['student_id'];
+    $this->db->where('student_id',$student_id);
+    $this->db->delete($this->db_student,$uparr);
+  }
+
+  //////////// end edit datastd_ad///////////////////////
+  // //////////edit del teacher/////////////////////////
+  public function r_show_teacher($data)
+  {
+    $teacher_id = $data['teacher_id'];
+    $this->db->select("*");
+    $this->db->from("teacher");
+    $this->db->where('teacher_id',$teacher_id);
+    $query = $this->db->get();
+    return $query;
+  }
+  public function update_tch($uparr)
+  {
+    $teacher_id = $uparr['teacher_id'];
+    $this->db->where('teacher_id',$teacher_id);
+    $this->db->update($this->db_teacher,$uparr);
+  }
+  public function deltch_ad($uparr)
+  {
+    $teacher_id= $uparr['teacher_id'];
+    $this->db->where('teacher_id',$teacher_id);
+    $this->db->delete($this->db_teacher,$uparr);
+  }
 
 }

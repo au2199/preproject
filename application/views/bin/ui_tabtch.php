@@ -67,10 +67,10 @@ A importdata_admin
 <a href="<?= base_url('Controller/commit_result') ?>"> ผลการเลือกกรรมการ(admin)
     <!-- <img src="<?= base_url('./image/last_com.png') ?>" class="img-circle" height="65" width="65" alt="Avatar"> -->
 </a><br>
-<a href="<?= base_url('Controller/importdata_admin') ?>"> นำข้อมูลเข้า std(admin)
+<a href="<?= base_url('Controller/importdata_admin') ?>"> นำข้อมูลเข้านิสิต(admin)
     <!-- <img src="<?= base_url('./image/importdata_admin.png') ?>" class="img-circle" height="65" width="65" alt="Avatar"> -->
 </a><br>
-<a href="<?= base_url('Controller/importdatatch_ad') ?>"> นำข้อมูลเข้า tch(admin)
+<a href="<?= base_url('Controller/importdatatch_ad') ?>"> นำข้อมูลเข้าอาจารย์(admin)
     <!-- <img src="<?= base_url('./image/importdata_admin.png') ?>" class="img-circle" height="65" width="65" alt="Avatar"> -->
 </a><br>
 <a href="<?= base_url('Controller/test_show') ?>"> ดูคะแนน(ส่วนรวม)

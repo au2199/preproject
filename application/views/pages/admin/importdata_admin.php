@@ -3,7 +3,7 @@
 
 <?php
 $web = "KUCPE";
-$topic = "นำข้อมูลเข้า(admin)";
+$topic = "นำข้อมูลเข้านิสิต(admin)";
 
 ?>
 
@@ -73,7 +73,7 @@ $topic = "นำข้อมูลเข้า(admin)";
 							<!-- ///////////////////////////////////////////////// -->
 							<div class="col-sm-4" style="text-align: center;">
 								<label>
-									<h1 style="color:black;">ปีการศึกษา</h1> <input type="text">
+									<h1 style="color:black;">ปีการศึกษา 2562</h1> <!--input type="text"-->
 								</label>
 								<!-- <label><h2>นำข้อมูลเข้านิสิต</h2> </label> -->
 							</div>
@@ -81,16 +81,19 @@ $topic = "นำข้อมูลเข้า(admin)";
 						</div>
 						<!--//////////////////////////////////////////////////-->
 						<div class="row">
-									<div class="col-sm-12">
+									<div class="col-sm-12 col-lg-12 col-md-12">
 										<div class="panel panel-default">
 											<div class="panel-body">
+<<<<<<< HEAD
+												<div class="col-sm-12 col-lg-12 col-md-12">
+=======
 
 												<div class="col-sm-12">
 
 
+>>>>>>> b8494abbdd2d9babe3310dcb6b53ca06334a06f2
 														 <!-- <div class="container" style="margin-top:50px"> -->
 																	<br>
-
 																	<?php if (isset($error)): ?>
 																		 <div class="alert alert-error"><?php echo $error; ?></div>
 																 <?php endif; ?>
@@ -100,9 +103,10 @@ $topic = "นำข้อมูลเข้า(admin)";
 
 																 <h2>Import data csv to mysql</h2>
 																		 <form method="post" action="<?=base_url('Controller/importcsv'); ?>" enctype="multipart/form-data">
-																				 <input type="file" class="colora" name="userfile" ><br><br>
+																				 <input type="file" class="colora " name="userfile" ><br><br>
 																				 <input type="submit" name="submit" value="UPLOAD" class="btn btn-primary">
 																		 </form>
+																	
 																 <br><br>
 																 <table class="table table-striped table-hover table-bordered">
 																		 <caption>Data List student</caption>
@@ -134,9 +138,13 @@ $topic = "นำข้อมูลเข้า(admin)";
 																		 </tbody>
 																 </table>
 																 <hr>
+<<<<<<< HEAD
+
+=======
 																 <!-- <footer>
 																		 <p>&copy;Contact</p>
 																 </footer> -->
+>>>>>>> b8494abbdd2d9babe3310dcb6b53ca06334a06f2
 														 <!-- </div> -->
 												</div>
 
