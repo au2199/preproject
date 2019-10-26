@@ -234,29 +234,8 @@ class Controller extends CI_Controller
 		// echo $x;
 		$data = array('teacher_id'=>$x);
 		$this->load->model('model');
-		$data['show'] = $this->model->m_show_teacher();
-		$this->load->view('pages/admin/datatch_ad', $data);
-
-		$result = $this->model->log($uparr);
-		// echo "<pre>";print_r($delarr);
-		if ($btnup == 'up') {
-			if ($teacher_id == $result->row('teacher_id')) {
-				$this->model->update($uparr);
-				// echo "<script type='text/javascript'>alert('update password success');</script> ";
-				redirect(base_url('Controller/datatch_ad'));
-				echo "<script type='text/javascript'>alert('update password success');</script> ";
-			} else {
-				echo "<script type = 'text/javascript'>alert('no data in system');</script>";
-			}
-		} else if ($btndel == 'del') {
-			if ($teacher_id == $result->row('teacher_id')) {
-				$this->model->del($uparr);
-				// redirect(base_url('Controller/datatch_ad'));
-				echo "<script type='text/javascript'>alert('delete success');</script> ";
-			} else {
-				echo "<script type = 'text/javascript'>alert('no data in system');</script>";
-			}
-		}
+		$this->model->deltch_ad($data);
+		redirect(base_url('Controller/datatch_ad'));
 	}
 	public function edit_score()
 	{
