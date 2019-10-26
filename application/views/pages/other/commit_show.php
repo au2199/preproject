@@ -53,7 +53,7 @@ $topic = "กรรมการ(other)";
 
 <body>
     <?php
-    $state = false; // recieve if admin click 'confirm button' /commit_result
+    $state = true; // recieve if admin click 'confirm button' /commit_result
     $show_grp = $show[0];
     $show_tch = $show[1];
     $group_ids = array();
