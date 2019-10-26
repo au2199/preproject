@@ -71,7 +71,7 @@ $topic = "ข้อมูลอาจารย์";
 							<!-- ///////////////////////////////////////////////// -->
 							<div class="col-sm-4" style="text-align: center;">
 								<label>
-									<h1 style="color:black;">ปีการศึกษา 2562</h1> 
+									<h1 style="color:black;">ปีการศึกษา 2562</h1>
 								</label>
 								<!-- <label><h2>นำข้อมูลเข้านิสิต</h2> </label> -->
 							</div>
@@ -80,95 +80,115 @@ $topic = "ข้อมูลอาจารย์";
 						<!--//////////////////////////////////////////////////-->
 						<div class="row">
 							<div class="col-sm-12">
-              <table class="table table-bordered table-striped well">
-                <thead>
-                  <tr>
-										<th><center>ID</center></th>
-                    <th><center>คำนำหน้า</center></th>
-                    <th><center>ชื่อ</center></th>
-										<th><center>นามสกุล</center></th>
-                    <th><center>ความถนัด</center></th>
-                    <th><center>Email</center></th>
-                    <!-- <th><center>Edit</center></th>
+								<table class="table table-bordered table-striped well">
+									<thead>
+										<tr>
+											<th>
+												<center>ID</center>
+											</th>
+											<th>
+												<center>คำนำหน้า</center>
+											</th>
+											<th>
+												<center>ชื่อ</center>
+											</th>
+											<th>
+												<center>นามสกุล</center>
+											</th>
+											<th>
+												<center>ความถนัด</center>
+											</th>
+											<th>
+												<center>Email</center>
+											</th>
+											<!-- <th><center>Edit</center></th>
                     <th><center>Delete</center></th> -->
-                  </tr>
-                </thead>
-                <tbody>
-    							<?php
-    							foreach ($show->result() as $row)
-    							{
-                      echo "<tr>
+										</tr>
+									</thead>
+									<tbody>
+										<?php
+										foreach ($show->result() as $row) {
+											echo "<tr>
                           <td>
-                            " .$row->teacher_id. "
+                            " . $row->teacher_id . "
                           </td>
                            <td>
                              " . $row->title . "
                            </td>
                           <td>
-                              " .$row->fname."
+                              " . $row->fname . "
                           </td>
                           <td>
-                            ".$row->lname."
+                            " . $row->lname . "
                           </td>
                           <td>
-                            " .$row->ability. "
+                            " . $row->ability . "
                           </td>
                           <td>
-                              " .$row->email . "
+                              " . $row->email . "
                           </td>
                       </tr>";
-    							}
-    							?>
-                </tbody>
-              </table>
-							<table class="table table-bordered table-striped well">
-								<thead>
-									<tr>
-										<!-- <th><center>ID</center></th> -->
-										<th><center>คำนำหน้า</center></th>
-										<th><center>ชื่อ</center></th>
-										<th><center>นามสกุล</center></th>
-										<th><center>ความถนัด</center></th>
-										<th><center>Email</center></th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td hidden>
-											<input type='text' name='ID' value='<?php echo $row->teacher_id;?>' >
-										</td>
-										<td>
-											<input type='text' name='titleso' value='<?php echo $row->title;?>' >
-										</td>
-										<td>
-											<input type='text' name='fnameso' value='<?php echo $row->fname;?>' >
-										</td>
-										<td>
-											<input type='text' name='lnameso' value='<?php echo $row->lname;?>' >
-										</td>
-										<td>
-											<input type='text' name='abilityso' value='<?php echo $row->ability;?>' >
-										</td>
-										<td>
-											<input type='text' name='emailso' value='<?php echo $row->email;?>' >
-										</td>
-									</tr>
-								</tdbody>
-							</table>
-								<button type='submit' class='btn-primary btn' name='up' value='up' >Edit</button>
-								<button type='submit' class='btn-danger btn' name='can' value='can' >Cancel</button>
-<!-- <?php
-echo $count;
-foreach ($show->result() as $row)
-{
-   echo $row->teacher_id;
-}
-?> -->
+										}
+										?>
+									</tbody>
+								</table>
+								<table class="table table-bordered table-striped well">
+									<thead>
+										<tr>
+											<!-- <th><center>ID</center></th> -->
+											<th>
+												<center>คำนำหน้า</center>
+											</th>
+											<th>
+												<center>ชื่อ</center>
+											</th>
+											<th>
+												<center>นามสกุล</center>
+											</th>
+											<th>
+												<center>ความถนัด</center>
+											</th>
+											<th>
+												<center>Email</center>
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td hidden>
+												<input type='text' name='ID' value='<?php echo $row->teacher_id; ?>'>
+											</td>
+											<td>
+												<input type='text' name='titleso' value='<?php echo $row->title; ?>'>
+											</td>
+											<td>
+												<input type='text' name='fnameso' value='<?php echo $row->fname; ?>'>
+											</td>
+											<td>
+												<input type='text' name='lnameso' value='<?php echo $row->lname; ?>'>
+											</td>
+											<td>
+												<input type='text' name='abilityso' value='<?php echo $row->ability; ?>'>
+											</td>
+											<td>
+												<input type='text' name='emailso' value='<?php echo $row->email; ?>'>
+											</td>
+										</tr>
+										</tdbody>
+								</table>
+								<button type='submit' class='btn-primary btn' name='up' value='up'>Edit</button>
+								<button type='submit' class='btn-danger btn' name='can' value='can'>Cancel</button>
+								<!-- <?php
+										echo $count;
+										foreach ($show->result() as $row) {
+											echo $row->teacher_id;
+										}
+										?> -->
 					</form>
-					</div>
 				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 </body>
 <!--############################################## Footer ###########################################################################-->

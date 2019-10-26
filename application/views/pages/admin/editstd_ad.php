@@ -65,13 +65,14 @@ $topic = "editstd_ad";
 				</div>
 				<div class="container-fluid well">
 					<!-- Body -->
-					<form action="<?=base_url('Controller/update_std'); ?>" method='post'>
+					<form action="<?= base_url('Controller/update_std'); ?>" method='post'>
 						<div class="row">
 							<div class="col-sm-4"></div>
 							<!-- ///////////////////////////////////////////////// -->
 							<div class="col-sm-4" style="text-align: center;">
 								<label>
-									 <h1 style="color:black;">ปีการศึกษา 2562</h1> <!--input type="text"> -->
+									<h1 style="color:black;">ปีการศึกษา 2562</h1>
+									<!--input type="text"> -->
 								</label>
 								<!-- <label><h2>นำข้อมูลเข้านิสิต</h2> </label> -->
 							</div>
@@ -79,73 +80,90 @@ $topic = "editstd_ad";
 						</div>
 						<!--//////////////////////////////////////////////////-->
 						<div class="row">
-              <table class="table table-bordered table-striped well">
-                <thead>
-                  <tr>
-										<th><center>student_id</center></th>
-                    <th><center>คำนำหน้า</center></th>
-                    <th><center>ชื่อ</center></th>
-                    <th><center>นามสกุล</center></th>
-                    <th><center>Email</center></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php
-                  foreach ($show->result() as $row)
-                  {
-                    echo "<tr>
+							<table class="table table-bordered table-striped well">
+								<thead>
+									<tr>
+										<th>
+											<center>student_id</center>
+										</th>
+										<th>
+											<center>คำนำหน้า</center>
+										</th>
+										<th>
+											<center>ชื่อ</center>
+										</th>
+										<th>
+											<center>นามสกุล</center>
+										</th>
+										<th>
+											<center>Email</center>
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php
+									foreach ($show->result() as $row) {
+										echo "<tr>
                         <td>
-                            " .$row->student_id. "
+                            " . $row->student_id . "
                         </td>
                         <td>
-                            " . $row->title. "
+                            " . $row->title . "
                         </td>
                         <td>
-                            " . $row->fname. "
+                            " . $row->fname . "
                         </td>
                         <td>
-                            " .$row->lname. "
+                            " . $row->lname . "
                         </td>
                         <td>
                             " . $row->email . "
                         </td>
                     </tr>";
-                  }
-                  ?>
-                </tbody>
-              </table>
-              <table class="table table-bordered table-striped well">
+									}
+									?>
+								</tbody>
+							</table>
+							<table class="table table-bordered table-striped well">
 								<thead>
 									<tr>
-										<th><center>คำนำหน้า</center></th>
-										<th><center>ชื่อ</center></th>
-										<th><center>นามสกุล</center></th>
-										<th><center>Email</center></th>
+										<th>
+											<center>คำนำหน้า</center>
+										</th>
+										<th>
+											<center>ชื่อ</center>
+										</th>
+										<th>
+											<center>นามสกุล</center>
+										</th>
+										<th>
+											<center>Email</center>
+										</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr>
-                    <td hidden>
-											<input type='text' name='ID' value='<?php echo $row->student_id;?>' >
+										<td hidden>
+											<input type='text' name='ID' value='<?php echo $row->student_id; ?>'>
 										</td>
 										<td>
-											<input type='text' name='title' value='<?php echo $row->title; ?>' >
+											<input type='text' name='title' value='<?php echo $row->title; ?>'>
 										</td>
 										<td>
-											<input type='text' name='fname' value='<?php echo $row->fname; ?>' >
+											<input type='text' name='fname' value='<?php echo $row->fname; ?>'>
 										</td>
 										<td>
-											<input type='text' name='lname' value='<?php echo $row->lname; ?>' >
+											<input type='text' name='lname' value='<?php echo $row->lname; ?>'>
 										</td>
 
 										<td>
-											<input type='text' name='email' value='<?php echo $row->email; ?>' >
+											<input type='text' name='email' value='<?php echo $row->email; ?>'>
 										</td>
 									</tr>
-								</tdbody>
+									</tdbody>
 							</table>
-              <button type='submit' class='btn-primary btn' name='up' value='up' >Submit</button>
-              <button type='submit' class='btn-danger btn' name='can' value='can'>Cancel</button>
+							<button type='submit' class='btn-primary btn' name='up' value='up'>Submit</button>
+							<button type='submit' class='btn-danger btn' name='can' value='can'>Cancel</button>
 						</div>
 					</form>
 				</div>
@@ -158,4 +176,5 @@ $topic = "editstd_ad";
 	<div id='ui_footer'></div>
 </footer>
 <!--############################################## End ###########################################################################-->
+
 </html>

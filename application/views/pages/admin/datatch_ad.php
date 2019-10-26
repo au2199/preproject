@@ -71,7 +71,7 @@ $topic = "ข้อมูลอาจารย์";
 							<!-- ///////////////////////////////////////////////// -->
 							<div class="col-sm-4" style="text-align: center;">
 								<label>
-									<h1 style="color:black;">ปีการศึกษา 2562</h1> 
+									<h1 style="color:black;">ปีการศึกษา 2562</h1>
 								</label>
 								<!-- <label><h2>นำข้อมูลเข้านิสิต</h2> </label> -->
 							</div>
@@ -80,44 +80,58 @@ $topic = "ข้อมูลอาจารย์";
 						<!--//////////////////////////////////////////////////-->
 						<div class="row">
 							<div class="col-sm-12">
-              <table class="table table-bordered table-striped well">
-                <thead>
-                  <tr>
-										<th><center>ID</center></th>
-                    <th><center>คำนำหน้า</center></th>
-                    <th><center>ชื่อ</center></th>
-										<th><center>นามสกุล</center></th>
-                    <th><center>ความถนัด</center></th>
-                    <th><center>Email</center></th>
-                    <th><center>Edit</center></th>
-                    <th><center>Delete</center></th>
-                  </tr>
-                </thead>
-                <tbody>
-    							<?php
-    							$count = 0;
-                  $title=array();
-    							$fname = array();
-    							$lname= array();
-    							$ability = array();
-    							$email = array();
-									$teacher_id = array();
-    							foreach ($show->result() as $row)
-    							{
-                      array_push($title,$row->title);
-    									array_push($fname, $row->fname);
-    									array_push($lname, $row->lname);
-    									array_push($ability, $row->ability);
-    									array_push($email, $row->email);
+								<table class="table table-bordered table-striped well">
+									<thead>
+										<tr>
+											<th>
+												<center>ID</center>
+											</th>
+											<th>
+												<center>คำนำหน้า</center>
+											</th>
+											<th>
+												<center>ชื่อ</center>
+											</th>
+											<th>
+												<center>นามสกุล</center>
+											</th>
+											<th>
+												<center>ความถนัด</center>
+											</th>
+											<th>
+												<center>Email</center>
+											</th>
+											<th>
+												<center>Edit</center>
+											</th>
+											<th>
+												<center>Delete</center>
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										<?php
+										$count = 0;
+										$title = array();
+										$fname = array();
+										$lname = array();
+										$ability = array();
+										$email = array();
+										$teacher_id = array();
+										foreach ($show->result() as $row) {
+											array_push($title, $row->title);
+											array_push($fname, $row->fname);
+											array_push($lname, $row->lname);
+											array_push($ability, $row->ability);
+											array_push($email, $row->email);
 											array_push($teacher_id, $row->teacher_id);
-    									$count++;
-    									// echo $row->fname;
-    							}
+											$count++;
+											// echo $row->fname;
+										}
 
-    							for ($i = 0; $i < $count; $i++)
-    							{
+										for ($i = 0; $i < $count; $i++) {
 
-    									echo "<tr>
+											echo "<tr>
 													<td>
 														" . $teacher_id[$i] . "
 													</td>
@@ -125,10 +139,10 @@ $topic = "ข้อมูลอาจารย์";
                             " . $title[$i] . "
                           </td>
     											<td>
-    													" . $fname[$i] ."
+    													" . $fname[$i] . "
     											</td>
 													<td>
-    												". $lname[$i]."
+    												" . $lname[$i] . "
     											</td>
     											<td>
     												" . $ability[$i] . "
@@ -138,21 +152,21 @@ $topic = "ข้อมูลอาจารย์";
     											</td>
 													<td>
 
-															 <a class='btn-primary btn' href='".base_url()."Controller/edittch_ad/$teacher_id[$i]' >edit</a>
+															 <a class='btn-primary btn' href='" . base_url() . "Controller/edittch_ad/$teacher_id[$i]' >edit</a>
                           </td>
                           <td>
-															<a class='btn-danger btn' href='".base_url()."Controller/deltch_ad/$teacher_id[$i]' >Delete</a>
+															<a class='btn-danger btn' href='" . base_url() . "Controller/deltch_ad/$teacher_id[$i]' >Delete</a>
                           </td>
     									</tr>";
-    							}
-    							?>
-                </tbody>
-              </table>
+										}
+										?>
+									</tbody>
+								</table>
 					</form>
-					</div>
 				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 </body>
 <!--############################################## Footer ###########################################################################-->

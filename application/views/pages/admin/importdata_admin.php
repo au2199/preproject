@@ -68,92 +68,78 @@ $topic = "นำข้อมูลเข้านิสิต(admin)";
 				<div class="container-fluid well">
 					<!-- Body -->
 
-						<div class="row">
-							<div class="col-sm-4"></div>
-							<!-- ///////////////////////////////////////////////// -->
-							<div class="col-sm-4" style="text-align: center;">
-								<label>
-									<h1 style="color:black;">ปีการศึกษา 2562</h1> <!--input type="text"-->
-								</label>
-								<!-- <label><h2>นำข้อมูลเข้านิสิต</h2> </label> -->
-							</div>
-							<div class="col-sm-4"></div>
+					<div class="row">
+						<div class="col-sm-4"></div>
+						<!-- ///////////////////////////////////////////////// -->
+						<div class="col-sm-4" style="text-align: center;">
+							<label>
+								<h1 style="color:black;">ปีการศึกษา 2562</h1>
+								<!--input type="text"-->
+							</label>
+							<!-- <label><h2>นำข้อมูลเข้านิสิต</h2> </label> -->
 						</div>
-						<!--//////////////////////////////////////////////////-->
-						<div class="row">
+						<div class="col-sm-4"></div>
+					</div>
+					<!--//////////////////////////////////////////////////-->
+					<div class="row">
+						<div class="col-sm-12 col-lg-12 col-md-12">
+							<div class="panel panel-default">
+								<div class="panel-body">
 									<div class="col-sm-12 col-lg-12 col-md-12">
-										<div class="panel panel-default">
-											<div class="panel-body">
-<<<<<<< HEAD
-												<div class="col-sm-12 col-lg-12 col-md-12">
-=======
+										<!-- <div class="container" style="margin-top:50px"> -->
+										<br>
+										<?php if (isset($error)) : ?>
+											<div class="alert alert-error"><?php echo $error; ?></div>
+										<?php endif; ?>
+										<?php if ($this->session->flashdata('success') == TRUE) : ?>
+											<div class="alert alert-success"><?php echo $this->session->flashdata('success'); ?></div>
+										<?php endif; ?>
 
-												<div class="col-sm-12">
+										<h2>Import data csv to mysql</h2>
+										<form method="post" action="<?= base_url('Controller/importcsv'); ?>" enctype="multipart/form-data">
+											<input type="file" class="colora " name="userfile"><br><br>
+											<input type="submit" name="submit" value="UPLOAD" class="btn btn-primary">
+										</form>
 
+										<br><br>
+										<table class="table table-striped table-hover table-bordered">
+											<caption>Data List student</caption>
+											<thead>
+												<tr>
+													<th>Title</th>
+													<th>First Name</th>
+													<th>Last Name</th>
 
->>>>>>> b8494abbdd2d9babe3310dcb6b53ca06334a06f2
-														 <!-- <div class="container" style="margin-top:50px"> -->
-																	<br>
-																	<?php if (isset($error)): ?>
-																		 <div class="alert alert-error"><?php echo $error; ?></div>
-																 <?php endif; ?>
-																 <?php if ($this->session->flashdata('success') == TRUE): ?>
-																		 <div class="alert alert-success"><?php echo $this->session->flashdata('success'); ?></div>
-																 <?php endif; ?>
+													<th>Email</th>
+												</tr>
+											</thead>
+											<tbody>
+												<?php if ($student == FALSE) : ?>
+													<tr>
+														<td colspan="4">There are currently No Addresses</td>
+													</tr>
+												<?php else : ?>
+													<?php foreach ($student as $row) : ?>
+														<tr>
+															<td><?php echo $row['title']; ?></td>
+															<td><?php echo $row['fname']; ?></td>
+															<td><?php echo $row['lname']; ?></td>
 
-																 <h2>Import data csv to mysql</h2>
-																		 <form method="post" action="<?=base_url('Controller/importcsv'); ?>" enctype="multipart/form-data">
-																				 <input type="file" class="colora " name="userfile" ><br><br>
-																				 <input type="submit" name="submit" value="UPLOAD" class="btn btn-primary">
-																		 </form>
-																	
-																 <br><br>
-																 <table class="table table-striped table-hover table-bordered">
-																		 <caption>Data List student</caption>
-																		 <thead>
-																				 <tr>
-																					 	<th>Title</th>
-																						 <th>First Name</th>
-																						 <th>Last Name</th>
-
-																						 <th>Email</th>
-																				 </tr>
-																		 </thead>
-																		 <tbody>
-																				 <?php if ($student == FALSE): ?>
-																						 <tr><td colspan="4">There are currently No Addresses</td></tr>
-																				 <?php else: ?>
-																						 <?php foreach ($student as $row): ?>
-																								 <tr>
-																									  <td><?php echo $row['title']; ?></td>
-																										 <td><?php echo $row['fname']; ?></td>
-																										 <td><?php echo $row['lname']; ?></td>
-
-																										 <td><?php echo $row['email']; ?></td>
-																										 <!-- <td><?php echo $row['gender']; ?></td>
-																										 <td><?php echo $row['cnt_address']; ?></td> -->
-																								 </tr>
-																						 <?php endforeach; ?>
-																				 <?php endif; ?>
-																		 </tbody>
-																 </table>
-																 <hr>
-<<<<<<< HEAD
-
-=======
-																 <!-- <footer>
-																		 <p>&copy;Contact</p>
-																 </footer> -->
->>>>>>> b8494abbdd2d9babe3310dcb6b53ca06334a06f2
-														 <!-- </div> -->
-												</div>
-
-											</div>
-										</div>
+															<td><?php echo $row['email']; ?></td>
+															<!-- <td><?php echo $row['gender']; ?></td>
+															 <td><?php echo $row['cnt_address']; ?></td> -->
+														</tr>
+													<?php endforeach; ?>
+												<?php endif; ?>
+											</tbody>
+										</table>
+										<hr>
+										<!-- </div> -->
 									</div>
+								</div>
+							</div>
 						</div>
-
-
+					</div>
 				</div>
 			</div>
 		</div>
