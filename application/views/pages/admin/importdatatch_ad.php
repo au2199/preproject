@@ -47,7 +47,7 @@ $topic = "นำข้อมูลเข้าอาจารย์(admin)";
 </head>
 
 <!--############################################## Header ###########################################################################-->
-<header style="height: 12.7vh">
+<header>
 	<div id='ui_main'></div>
 </header>
 
@@ -100,20 +100,32 @@ $topic = "นำข้อมูลเข้าอาจารย์(admin)";
 										<form method="post" action="<?= base_url('Controller/importcsvtch'); ?>" enctype="multipart/form-data">
 
 											<input type="file" class="colora" name="userfile"><br><br>
-											<input type="submit" name="submit" value="UPLOAD" class="btn btn-primary">
+											<input type="submit" name="submit" value="UPLOAD" class="btn colora">
 										</form>
 
 										<br><br>
 										<table class="table table-striped table-hover table-bordered">
-											<caption>Data List teacher</caption>
+											<caption>Data List Teacher</caption>
 											<thead>
 												<tr>
-													<th>Type</th>
-													<th>Title</th>
-													<th>First Name</th>
-													<th>Last Name</th>
-													<th>Ability</th>
-													<th>Email</th>
+													<th>
+														<center>Type</center>
+													</th>
+													<th>
+														<center>Title</center>
+													</th>
+													<th>
+														<center>First Name</center>
+													</th>
+													<th>
+														<center>Last Name</center>
+													</th>
+													<th>
+														<center>Ability</center>
+													</th>
+													<th>
+														<center>Email</center>
+													</th>
 												</tr>
 											</thead>
 											<tbody>

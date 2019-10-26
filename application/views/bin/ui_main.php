@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<div class="w3-container row" style="background-color: #7C0000;color : white;">
+<div class="w3-container row" style="background-color: #7C0000; color : white" height="20vh">
     <div class="col-sm-1">
-        <img src="<?= base_url('./image/img_logo.png') ?>" alt="" style="width:150px;" height="100px;">
+        <img src="<?= base_url('./image/img_logo.png') ?>" alt="" style="width:150px" height="100%">
     </div>
     <div class="col-sm-9">
         <h3>&nbsp;&nbsp;&nbsp;&nbsp;COMPUTER ENGINEERING OF KASETSART SIRACHA CAMPUS</h3>

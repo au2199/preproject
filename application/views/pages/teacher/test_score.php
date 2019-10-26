@@ -45,7 +45,7 @@ $topic = "ให้คะแนน(teacher)";
 </head>
 
 <!--############################################## Header ###########################################################################-->
-<header style="height: 12.7vh">
+<header>
     <div id='ui_main'></div>
 </header>
 
@@ -141,6 +141,8 @@ $topic = "ให้คะแนน(teacher)";
                                 <td><?php echo "A" ?></td>
                             </tr> -->
                         </table>
+                        <p style='color: red'>***โปรดตรวจสอบว่ากรอกข้อมูลครบทุกช่อง***</p>
+                        <p style='color: red'>***กรณีที่ให้ 0 โปรดระบุ 0 ไว้ด้วย***</p>
                         <button name='submit' class="btn colora" value='update_score'>ยืนยัน</button>
                     </form>
                     <datalist id="browsers">

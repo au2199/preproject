@@ -45,7 +45,7 @@ $topic = "แก้ไข้คะแนน(admin)";
 </head>
 
 <!--############################################## Header ###########################################################################-->
-<header style="height: 12.7vh">
+<header>
     <div id='ui_main'></div>
 </header>
 
@@ -117,10 +117,10 @@ $topic = "แก้ไข้คะแนน(admin)";
                                 echo "
                                     <tr>
                                         <td><input class='btn colora' type='submit' name='group_name' value='$name_projects[$i]'></td>
-                                        <td><input name='score_document$i' value='$score_document'></td>
-                                        <td><input name='score_knowledge$i' value='$score_knowledge'></td>
-                                        <td><input name='score_completly$i' value='$score_completly'></td>
-                                        <td><input name='score_present$i' value='$score_present'></td>
+                                        <td><input class='form-control' name='score_document$i' value='$score_document'></td>
+                                        <td><input class='form-control' name='score_knowledge$i' value='$score_knowledge'></td>
+                                        <td><input class='form-control' name='score_completly$i' value='$score_completly'></td>
+                                        <td><input class='form-control' name='score_present$i' value='$score_present'></td>
                                         <input style='display: none' name='i' value='$i'>
                                     </tr>
                                 </form>";

@@ -47,7 +47,7 @@ $topic = "นำข้อมูลเข้านิสิต(admin)";
 </head>
 
 <!--############################################## Header ###########################################################################-->
-<header style="height: 12.7vh">
+<header>
 	<div id='ui_main'></div>
 </header>
 
@@ -98,19 +98,26 @@ $topic = "นำข้อมูลเข้านิสิต(admin)";
 										<h2>Import data csv to mysql</h2>
 										<form method="post" action="<?= base_url('Controller/importcsv'); ?>" enctype="multipart/form-data">
 											<input type="file" class="colora " name="userfile"><br><br>
-											<input type="submit" name="submit" value="UPLOAD" class="btn btn-primary">
+											<input type="submit" name="submit" value="UPLOAD" class="btn colora">
 										</form>
 
 										<br><br>
 										<table class="table table-striped table-hover table-bordered">
-											<caption>Data List student</caption>
+											<caption>Data List Student</caption>
 											<thead>
 												<tr>
-													<th>Title</th>
-													<th>First Name</th>
-													<th>Last Name</th>
-
-													<th>Email</th>
+													<th>
+														<center>Title</center>
+													</th>
+													<th>
+														<center>First Name</center>
+													</th>
+													<th>
+														<center>Last Name</center>
+													</th>
+													<th>
+														<center>Email</center>
+													</th>
 												</tr>
 											</thead>
 											<tbody>
