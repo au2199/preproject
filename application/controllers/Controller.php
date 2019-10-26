@@ -113,18 +113,88 @@ class Controller extends CI_Controller
 		$data['show'] = $this->model->m_show_notice();
 		$this->load->view('pages/admin/home_admin', $data);
 	}
-
+	//okpokpokpokpokpokpokpokpokpokp//
+	// ///////////// start edit del std////////////////////////
 	public function datastd_ad()
 	{
 		$this->load->model('model');
 		$data['show'] = $this->model->m_show_student();
-
 		$this->load->view('pages/admin/datastd_ad',$data);
 	}
-	public function datatch_ad()
+	public function editstd_ad($x='')
+	{
+		echo "Welcome".$x;
+		$data = array('student_id'=>$x);
+		$this->load->model('model');
+		// echo "<pre>"; print_r($data); // เอาไว้เช็คค่า id
+		$result['show'] = $this->model->r_show_student($data);
+		// echo "<pre>"; print_r($result); //ดูค่าในข้อมูลที่ส่งมา
+		$this->load->view('pages/admin/editstd_ad',$result);
+	}
+	public function update_std()
 	{
 		$btnup = $this->input->post('up');
-		$btndel = $this->input->post('del');
+		$btncan = $this->input->post('can');
+		$student_id = $this->input->post('ID');
+		$title = $this->input->post('title');
+		$fname = $this->input->post('fname');
+		$lname = $this->input->post('lname');
+		$email = $this->input->post('email');
+
+		$uparr = array(
+									'student_id' => $this->input->post('ID'),
+                  'title' => $this->input->post('title'),
+                  'fname' => $this->input->post('fname'),
+									'lname' => $this->input->post('lname'),
+									'email' => $this->input->post('email')
+                  );
+
+		$this->load->model('model');
+		// $result = $this->model->log($uparr);
+		 // echo "<pre>";print_r($delarr);
+	 if($btnup == 'up')
+	 {
+				 $this->model->update_std($uparr);
+				 // echo "<script type='text/javascript'>alert('update password success');</script> ";
+				 redirect(base_url('Controller/datastd_ad'));
+	 }
+	 else if($btncan =='can')
+	 {
+				 redirect(base_url('Controller/datastd_ad'));
+	 }
+	}
+	public function delstd_ad($x='')
+	{
+		// echo $x;
+		$data = array('student_id'=>$x);
+		$this->load->model('model');
+		// echo "<pre>"; print_r($data); // เอาไว้เช็คค่า id
+		$this->model->delstd_ad($data);
+		echo "<script type='text/javascript'>alert('delete password success');</script> ";
+		redirect(base_url('Controller/datastd_ad'));
+	}
+	// //////////////////////end edit std//////////////////
+	////////////////// start edit del teacher/////////////////////
+	public function datatch_ad()
+	{
+		$this->load->model('model');
+		$data['show'] = $this->model->m_show_teacher();
+		$this->load->view('pages/admin/datatch_ad',$data);
+	}
+	public function edittch_ad($x='')
+	{
+		// echo "Welcome".$x;
+		$data = array('teacher_id'=>$x);
+		$this->load->model('model');
+		// echo "<pre>"; print_r($data); // เอาไว้เช็คค่า id
+		$result['show'] = $this->model->r_show_teacher($data);
+		// echo "<pre>"; print_r($result); //ดูค่าในข้อมูลที่ส่งมา
+		$this->load->view('pages/admin/edittch_ad',$result);
+	}
+	public function update_tch()
+	{
+		$btnup = $this->input->post('up');
+		$btncan = $this->input->post('can');
 		$teacher_id = $this->input->post('ID');
 		$title = $this->input->post('titleso');
 		$fname = $this->input->post('fnameso');
@@ -134,47 +204,37 @@ class Controller extends CI_Controller
 
 		$uparr = array(
 									'teacher_id' => $this->input->post('ID'),
-                  'title' => $this->input->post('titleso'),
-                  'fname' => $this->input->post('fnameso'),
+									'title' => $this->input->post('titleso'),
+									'fname' => $this->input->post('fnameso'),
 									'lname' => $this->input->post('lnameso'),
 									'ability' => $this->input->post('abilityso'),
 									'email' => $this->input->post('emailso')
-                  );
+									);
 
-		$this->load->model('model');
-		$data['show'] = $this->model->m_show_teacher();
-		$this->load->view('pages/admin/datatch_ad',$data);
-
-		$result = $this->model->log($uparr);
-		 // echo "<pre>";print_r($delarr);
-	 if($btnup == 'up')
-	 {
-			 if($teacher_id == $result->row('teacher_id'))
-			 {
-				 $this->model->update($uparr);
-				 // echo "<script type='text/javascript'>alert('update password success');</script> ";
-				  redirect(base_url('Controller/datatch_ad'));
-					echo "<script type='text/javascript'>alert('update password success');</script> ";
-			 }
-			 else
-			 {
-				 echo "<script type = 'text/javascript'>alert('no data in system');</script>";
-			 }
-	 }
-	 else if($btndel=='del')
-	 {
-				 if($teacher_id == $result->row('teacher_id'))
-				 {
-					 $this->model->del($uparr);
-					 // redirect(base_url('Controller/datatch_ad'));
-						echo "<script type='text/javascript'>alert('delete success');</script> ";
-				 }
-				 else
-				 {
-					 echo "<script type = 'text/javascript'>alert('no data in system');</script>";
-				 }
-	 }
+			$this->load->model('model');
+		 if($btnup == 'up')
+		 {
+					 $this->model->update_tch($uparr);
+					 // echo "<script type='text/javascript'>alert('update password success');</script> ";
+					 redirect(base_url('Controller/datatch_ad'));
+		 }
+		 else if($btncan =='can')
+		 {
+					 redirect(base_url('Controller/datatch_ad'));
+		 }
 	}
+	public function deltch_ad($x='')
+	{
+		// echo $x;
+		$data = array('teacher_id'=>$x);
+		$this->load->model('model');
+		// echo "<pre>"; print_r($data); // เอาไว้เช็คค่า id
+		$this->model->deltch_ad($data);
+		echo "<script type='text/javascript'>alert('delete password success');</script> ";
+		redirect(base_url('Controller/datatch_ad'));
+	}
+
+	// /////////////////////////end edit del teacher//////////////////
 	///////////start_csv////////////////
 	public function importdata_admin()
 	{
@@ -284,6 +344,7 @@ class Controller extends CI_Controller
 							}
 		}
 	//////end_csv//////////////////
+	// okpokpokpokpokpokpokpokpokpokp//
 
 	/* #################################################################################################################### */
 	/* ###########################################      OTHER      ######################################################## */
