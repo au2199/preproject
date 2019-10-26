@@ -87,42 +87,47 @@ $topic = "แก้ไข้คะแนน(admin)";
                 </div>
                 <div class="container-fluid well">
                     <!-- Body -->
-                    <form action="<?= base_url('Controller/edit_score') ?>" method='post'>
-                        <table class="table table-bordered table-striped ">
-                            <tr>
-                                <th>
-                                    <center>กลุ่ม</center>
-                                </th>
-                                <th>
-                                    <center>คะแนนเล่มโครงงาน</center>
-                                </th>
-                                <th>
-                                    <center>คะแนนความรู้ในโครงงาน</center>
-                                </th>
-                                <th>
-                                    <center>ความสมบูรณ์ของชิ้นงาน</center>
-                                </th>
-                                <th>
-                                    <center>การนําเสนอ</center>
-                                </th>
-                            </tr>
+                    <table class="table table-bordered table-striped ">
+                        <tr>
+                            <th>
+                                <center>กลุ่ม</center>
+                            </th>
+                            <th>
+                                <center>คะแนนเล่มโครงงาน</center>
+                            </th>
+                            <th>
+                                <center>คะแนนความรู้ในโครงงาน</center>
+                            </th>
+                            <th>
+                                <center>ความสมบูรณ์ของชิ้นงาน</center>
+                            </th>
+                            <th>
+                                <center>การนําเสนอ</center>
+                            </th>
+                        </tr>
+                        <?php
+                        for ($i = 0; $i < sizeof($group_ids); $i++) {
+                            $score_document = $score_documents[$i];
+                            $score_knowledge = $score_knowledges[$i];
+                            $score_completly = $score_completlys[$i];
+                            $score_present = $score_presents[$i];
+                            ?>
+                            <form action='<?= base_url('Controller/edit_score') ?>' method='post'>
                             <?php
-                            for ($i = 0; $i < sizeof($group_ids); $i++) {
-                                $score_document = $score_documents[$i];
-                                $score_knowledge = $score_knowledges[$i];
-                                $score_completly = $score_completlys[$i];
-                                $score_present = $score_presents[$i];
-                                echo "<tr>
-                                    <td><input type='submit' name='group_name' value='$name_projects[$i]'></td>
-                                    <td><input name='score_document' value='$score_document'></td>
-                                    <td><input name='score_knowledge' value='$score_knowledge'></td>
-                                    <td><input name='score_completly' value='$score_completly'></td>
-                                    <td><input name='score_present' value='$score_present'></td>
-                                </tr>";
+                                echo "
+                                    <tr>
+                                        <td><input class='btn colora' type='submit' name='group_name' value='$name_projects[$i]'></td>
+                                        <td><input name='score_document$i' value='$score_document'></td>
+                                        <td><input name='score_knowledge$i' value='$score_knowledge'></td>
+                                        <td><input name='score_completly$i' value='$score_completly'></td>
+                                        <td><input name='score_present$i' value='$score_present'></td>
+                                        <input style='display: none' name='i' value='$i'>
+                                    </tr>
+                                </form>";
                             }
                             ?>
-                        </table>
-                    </form>
+                    </table>
+                    <p style='color: red'>***กดชื่อกลุ่มเพื่อเปลี่ยนคะแนนกลุ่มที่ต้องการ***</p>
                     <!-- Body -->
                 </div>
             </div>

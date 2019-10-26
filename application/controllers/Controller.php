@@ -239,11 +239,12 @@ class Controller extends CI_Controller
 	}
 	public function edit_score()
 	{
+		$i = $this->input->post('i');
 		$group_name = $this->input->post('group_name');
-		$score_document = $this->check_max_score($this->input->post('score_document'));
-		$score_knowledge = $this->check_max_score($this->input->post('score_knowledge'));
-		$score_completly = $this->check_max_score($this->input->post('score_completly'));
-		$score_present = $this->check_max_score($this->input->post('score_present'));
+		$score_document = $this->check_max_score($this->input->post('score_document' . $i));
+		$score_knowledge = $this->check_max_score($this->input->post('score_knowledge' . $i));
+		$score_completly = $this->check_max_score($this->input->post('score_completly' . $i));
+		$score_present = $this->check_max_score($this->input->post('score_present' . $i));
 		$group_id = 0;
 		$this->load->model('model');
 		$show_grp = $this->model->m_show_group();
@@ -431,7 +432,9 @@ class Controller extends CI_Controller
 	public function test_score()
 	{
 		$this->load->model('model');
-		$data['show'] = $this->model->m_show_group();
+		$data_grp['show_grp'] = $this->model->m_show_group();
+		$data_err['show_err'] = array('error' => '');
+		$data['show'] = array($data_grp['show_grp'], $data_err['show_err']);
 		$this->load->view('pages/teacher/test_score', $data);
 	}
 	public function create_group()
@@ -542,6 +545,7 @@ class Controller extends CI_Controller
 				if ($show_score->num_rows() > 0) {
 					foreach ($show_score->result() as $row_score) { }
 				}
+				$this->load->model('model');
 				if (!empty($this->input->post('student_student_id_1')) && !empty($this->input->post('student_student_id_2') && !empty($this->input->post('student_student_id_3')))) {
 					$data = array(
 						'data' => 'www.googledrive.com',
@@ -575,20 +579,16 @@ class Controller extends CI_Controller
 						'teacher_commit_id_2' => $this->input->post('teacher_id'),
 					);
 				}
-				$this->load->model('model');
 				$this->model->insert_group($data);
-				$data_std['show_std'] = $this->model->m_show_student();
 				$data_err['show_err'] = array('error' => '');
-				$data['show'] = array($data_std['show_std'], $data_err['show_err']);
-				$this->load->view('pages/teacher/create_group', $data);
 			} else {
 				// echo "NOT COMPLETE";
-				$this->load->model('model');
-				$data_std['show_std'] = $this->model->m_show_student();
 				$data_err['show_err'] = array('error' => 'error');
-				$data['show'] = array($data_std['show_std'], $data_err['show_err']);
-				$this->load->view('pages/teacher/create_group', $data);
 			}
+			$this->load->model('model');
+			$data_std['show_std'] = $this->model->m_show_student();
+			$data['show'] = array($data_std['show_std'], $data_err['show_err']);
+			$this->load->view('pages/teacher/create_group', $data);
 		}
 	}
 	public function cal_sel_commit_tch()
@@ -610,26 +610,33 @@ class Controller extends CI_Controller
 	}
 	public function update_score()
 	{
-		$weight_document = $this->input->post('weight_document');
-		$weight_knowledge = $this->input->post('weight_knowledge');
-		$weight_completly = $this->input->post('weight_completly');
-		$weight_present = $this->input->post('weight_present');
+		if (!empty($this->input->post('group_name')) && !empty($this->input->post('score_document')) && !empty($this->input->post('score_knowledge')) && !empty($this->input->post('score_completly')) && !empty($this->input->post('score_present'))) {
+			$weight_document = $this->input->post('weight_document');
+			$weight_knowledge = $this->input->post('weight_knowledge');
+			$weight_completly = $this->input->post('weight_completly');
+			$weight_present = $this->input->post('weight_present');
 
-		$group_name = $this->input->post('group_name');
-		$score_document = $this->check_max_score($this->input->post('score_document')) * $weight_document;
-		$score_knowledge = $this->check_max_score($this->input->post('score_knowledge')) * $weight_knowledge;
-		$score_completly = $this->check_max_score($this->input->post('score_completly')) * $weight_completly;
-		$score_present = $this->check_max_score($this->input->post('score_present')) * $weight_present;
-		$group_id = 0;
-		$this->load->model('model');
-		$show_grp = $this->model->m_show_group();
-		foreach ($show_grp->result() as $row_grp) {
-			if ($row_grp->name_project == $group_name) {
-				$group_id = $row_grp->group_id;
+			$group_name = $this->input->post('group_name');
+			$score_document = $this->check_max_score($this->input->post('score_document')) * $weight_document;
+			$score_knowledge = $this->check_max_score($this->input->post('score_knowledge')) * $weight_knowledge;
+			$score_completly = $this->check_max_score($this->input->post('score_completly')) * $weight_completly;
+			$score_present = $this->check_max_score($this->input->post('score_present')) * $weight_present;
+			$group_id = 0;
+			$this->load->model('model');
+			$show_grp = $this->model->m_show_group();
+			foreach ($show_grp->result() as $row_grp) {
+				if ($row_grp->name_project == $group_name) {
+					$group_id = $row_grp->group_id;
+				}
 			}
+			$this->model->update_score($group_id, $score_document, $score_knowledge, $score_completly, $score_present);
+			$data_err['show_err'] = array('error' => '');
+		} else {
+			$data_err['show_err'] = array('error' => 'error');
 		}
-		$this->model->update_score($group_id, $score_document, $score_knowledge, $score_completly, $score_present);
-		$data['show'] = $this->model->m_show_group();
+		$this->load->model('model');
+		$data_grp['show_grp'] = $this->model->m_show_group();
+		$data['show'] = array($data_grp['show_grp'], $data_err['show_err']);
 		$this->load->view('pages/teacher/test_score', $data);
 	}
 
