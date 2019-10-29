@@ -70,6 +70,82 @@ $topic = "นำข้อมูลเข้าอาจารย์(admin)";
 						<div class="col-sm-4" style="text-align: center">
 							<h1 style="color:black;">ปีการศึกษา 2562</h1>
 						</div>
+<<<<<<< HEAD
+						<!--//////////////////////////////////////////////////-->
+						<div class="row">
+									<div class="col-sm-12">
+										<div class="panel panel-default">
+											<div class="panel-body">
+
+
+												<div class="col-sm-12 col-md-12">
+
+												<div class="col-sm-12">
+
+
+
+														 <!-- <div class="container" style="margin-top:50px"> -->
+																	<br>
+
+																	<?php if (isset($error)): ?>
+																		 <div class="alert alert-error"><?php echo $error; ?></div>
+																 <?php endif; ?>
+																 <?php if ($this->session->flashdata('success') == TRUE): ?>
+																		 <div class="alert alert-success"><?php echo $this->session->flashdata('success'); ?></div>
+																 <?php endif; ?>
+
+																 <h2>Import data csv to mysql</h2>
+																		 <form method="post" action="<?=base_url('Controller/importcsvtch'); ?>" enctype="multipart/form-data">
+
+																				 <input type="file" class="colora" name="userfile" ><br><br>
+																				 <input type="submit" name="submit" value="UPLOAD" class="btn btn-success">
+																				 <a class='btn-primary btn' href='<?=base_url('Controller/datatch_ad');  ?>' >แก้ไขข้อมูล</a>
+																				 <a class=' btn colora' href='<?=base_url('Controller/inserttch_ad');  ?>'style="font-size:14px;" >เพิ่มข้อมูลอาจาย์</a>
+
+																		 </form>
+
+																 <br><br>
+																 <table class="table table-striped table-hover table-bordered">
+																		 <caption>Data List teacher</caption>
+																		 <thead>
+																				 <tr>
+                                           <th>Type</th>
+																					 	<th>Title</th>
+																						 <th>First Name</th>
+																						 <th>Last Name</th>
+                                             <th>Ability</th>
+																						 <th>Email</th>
+																				 </tr>
+																		 </thead>
+																		 <tbody>
+																				 <?php if ($teacher == FALSE): ?>
+																						 <tr><td colspan="4">There are currently No Addresses</td></tr>
+																				 <?php else: ?>
+																						 <?php foreach ($teacher as $row): ?>
+																								 <tr>
+                                                   <td><?php echo $row['type']; ?></td>
+																									  <td><?php echo $row['title']; ?></td>
+																										 <td><?php echo $row['fname']; ?></td>
+																										 <td><?php echo $row['lname']; ?></td>
+                                                     <td><?php echo $row['ability']; ?></td>
+																										 <td><?php echo $row['email']; ?></td>
+																										 <!-- <td><?php echo $row['gender']; ?></td>
+																										 <td><?php echo $row['cnt_address']; ?></td> -->
+																								 </tr>
+																						 <?php endforeach; ?>
+																				 <?php endif; ?>
+																		 </tbody>
+																 </table>
+																 <hr>
+																 <!-- <footer>
+																		 <p>&copy;Contact</p>
+																 </footer> -->
+														 <!-- </div> -->
+												</div>
+
+											</div>
+										</div>
+=======
 						<div class="col-sm-4"></div>
 					</div>
 					<div class="row">
@@ -135,6 +211,7 @@ $topic = "นำข้อมูลเข้าอาจารย์(admin)";
 												<?php endif; ?>
 											</tbody>
 										</table>
+>>>>>>> 02b589eae0662967f342a8c2a9c6c1d3e6e9019b
 									</div>
 								</div>
 							</div>

@@ -3,7 +3,7 @@
 
 <?php
 $web = "KUCPE";
-$topic = "editstd_ad";
+$topic = "เพิ่มข้อมูลอาจารย์์";
 
 ?>
 
@@ -45,7 +45,7 @@ $topic = "editstd_ad";
 </head>
 
 <!--############################################## Header ###########################################################################-->
-<header>
+<header style="height: 12.7vh">
 	<div id='ui_main'></div>
 </header>
 
@@ -65,14 +65,13 @@ $topic = "editstd_ad";
 				</div>
 				<div class="container-fluid well">
 					<!-- Body -->
-					<form action="<?= base_url('Controller/update_std'); ?>" method='post'>
+					<form class="form-horizontal" action="<?= base_url('Controller/insertstd_ad') ?>" method='post'>
 						<div class="row">
 							<div class="col-sm-4"></div>
 							<!-- ///////////////////////////////////////////////// -->
 							<div class="col-sm-4" style="text-align: center;">
 								<label>
 									<h1 style="color:black;">ปีการศึกษา 2562</h1>
-									<!--input type="text"> -->
 								</label>
 								<!-- <label><h2>นำข้อมูลเข้านิสิต</h2> </label> -->
 							</div>
@@ -80,103 +79,60 @@ $topic = "editstd_ad";
 						</div>
 						<!--//////////////////////////////////////////////////-->
 						<div class="row">
-							<table class="table table-bordered table-striped well">
-								<thead>
-									<tr>
-										<th>
-											<center>student_id</center>
-										</th>
-										<th>
-											<center>คำนำหน้า</center>
-										</th>
-										<th>
-											<center>ชื่อ</center>
-										</th>
-										<th>
-											<center>นามสกุล</center>
-										</th>
-										<th>
-											<center>Email</center>
-										</th>
-									</tr>
-								</thead>
-								<tbody>
-									<?php
-									foreach ($show->result() as $row) {
-										echo "<tr>
-                        <td>
-                            " . $row->student_id . "
-                        </td>
-                        <td>
-                            " . $row->title . "
-                        </td>
-                        <td>
-                            " . $row->fname . "
-                        </td>
-                        <td>
-                            " . $row->lname . "
-                        </td>
-                        <td>
-                            " . $row->email . "
-                        </td>
-                    </tr>";
-									}
-									?>
-								</tbody>
-							</table>
-							<table class="table table-bordered table-striped well">
-								<thead>
-									<tr>
-										<th>
-											<center>คำนำหน้า</center>
-										</th>
-										<th>
-											<center>ชื่อ</center>
-										</th>
-										<th>
-											<center>นามสกุล</center>
-										</th>
-										<th>
-											<center>Email</center>
-										</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td hidden>
-											<input type='text' name='ID' value='<?php echo $row->student_id; ?>'>
-										</td>
-										<td>
-											<input type='text' name='title' value='<?php echo $row->title; ?>'>
-										</td>
-										<td>
-											<input type='text' name='fname' value='<?php echo $row->fname; ?>'>
-										</td>
-										<td>
-											<input type='text' name='lname' value='<?php echo $row->lname; ?>'>
-										</td>
+            							<div class="col-sm-12">
 
-										<td>
-											<input type='text' name='email' value='<?php echo $row->email; ?>'>
-										</td>
-									</tr>
-									</tdbody>
-							</table>
-<<<<<<< HEAD
-              <button type='submit' class='btn-success btn' name='up' value='up' >Submit</button>
-              <button type='submit' class='btn-danger btn' name='can' value='can'>Cancel</button>
-=======
-							<button type='submit' class='btn-primary btn' name='up' value='up'>Submit</button>
-							<button type='submit' class='btn-danger btn' name='can' value='can'>Cancel</button>
->>>>>>> 02b589eae0662967f342a8c2a9c6c1d3e6e9019b
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+
+                                  <div class="form-group">
+                                    <label for="email" class="control-label col-sm-2">title : </label>
+                                      <div class="col-sm-10">
+                                        <input type='text'  class="form-control"  name='titleso' value='' >
+                                      </div>
+                                  </div>
+
+                                  <div class="form-group">
+                                    <label for="email" class="control-label col-sm-2">firstname :</label>
+                                      <div class="col-sm-10">
+                                        <input type='text' class="form-control" name='fnameso' value='' >
+                                      </div>
+                                  </div>
+
+                                  <div class="form-group">
+                                    <label for="email" class="control-label col-sm-2">lastname :</label>
+                                      <div class="col-sm-10">
+                                    	   <input type='text' class="form-control" name='lnameso' value='' >
+                                      </div >
+                                  </div>
+
+                                  <div class="form-group">
+                                    <label for="email" class="control-label col-sm-2">email :</label>
+                                    <div class="col-sm-10">
+                                  	   <input type='text' class="form-control" name='emailso' value='' >
+                                     </div>
+                                  </div>
+
+                                  <div class="form-group">
+                                    <div class="row">
+                                      <div class="col-sm-5"></div>
+                                      <div class="col-sm-7">
+                                        <button type='submit' class='btn-success btn' name='submit' value='submit' >Submit</button>
+                                        <button type='submit' class='btn-danger btn' name='can' value='can' >Cancel</button>
+                                      </div>
+
+                                     </div>
+                                  </div>
+
+            					</div>
+            				</div>
+                    </div>
+		        </div>
+          </form>
+	       </div>
+      </div>
+    </div>
+  </div>
 </body>
 <!--############################################## Footer ###########################################################################-->
+
 <footer>
 	<div id='ui_footer'></div>
 </footer>

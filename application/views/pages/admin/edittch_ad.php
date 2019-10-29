@@ -128,6 +128,55 @@ $topic = "ข้อมูลอาจารย์";
                               " . $row->email . "
                           </td>
                       </tr>";
+<<<<<<< HEAD
+    							}
+    							?>
+                </tbody>
+              </table>
+							<table class="table table-bordered table-striped well">
+								<thead>
+									<tr>
+										<!-- <th><center>ID</center></th> -->
+										<th><center>คำนำหน้า</center></th>
+										<th><center>ชื่อ</center></th>
+										<th><center>นามสกุล</center></th>
+										<th><center>ความถนัด</center></th>
+										<th><center>Email</center></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td hidden>
+											<input type='text' name='ID' value='<?php echo $row->teacher_id;?>' >
+										</td>
+										<td>
+											<input type='text' name='titleso' value='<?php echo $row->title;?>' >
+										</td>
+										<td>
+											<input type='text' name='fnameso' value='<?php echo $row->fname;?>' >
+										</td>
+										<td>
+											<input type='text' name='lnameso' value='<?php echo $row->lname;?>' >
+										</td>
+										<td>
+											<input type='text' name='abilityso' value='<?php echo $row->ability;?>' >
+										</td>
+										<td>
+											<input type='text' name='emailso' value='<?php echo $row->email;?>' >
+										</td>
+									</tr>
+								</tdbody>
+							</table>
+								<button type='submit' class='btn-success btn' name='up' value='up' >Submit</button>
+								<button type='submit' class='btn-danger btn' name='can' value='can' >Cancel</button>
+<!-- <?php
+echo $count;
+foreach ($show->result() as $row)
+{
+   echo $row->teacher_id;
+}
+?> -->
+=======
 										}
 										?>
 									</tbody>
@@ -184,6 +233,7 @@ $topic = "ข้อมูลอาจารย์";
 											echo $row->teacher_id;
 										}
 										?> -->
+>>>>>>> 02b589eae0662967f342a8c2a9c6c1d3e6e9019b
 					</form>
 				</div>
 			</div>

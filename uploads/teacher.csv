@@ -1,3 +1,12 @@
+<<<<<<< HEAD
+type,title,fname,lname,ability ,email
+1,Mr.,Zhang,Dora,OS,Mr.Zhang@ku.th
+2,Mr.,Gibbons,Raees,AI,Mr.Gibbons@ku.th
+3,Ms.,Daanish,Wolfe,Game,Ms.Daanish@ku.th
+4,Ms.,Mcdaniel,Cloe ,Data,Ms.Mcdaniel@ku.th
+5,Mr.,Peter,Parker,Image,Mr.Peter@ku.th
+6,Mr.,Mack ,Wolfe,Unity,Mr.Mack @ku.th
+=======
 type,title,fname,lname,ability ,email,,,,"CONCATENATE(B2,C2,""@ku.th"")"
 1,Mr.,Zhang,Dora,OS,Mr.Zhang@ku.th,,,,
 1,Mr.,Gibbons,Raees,AI,Mr.Gibbons@ku.th,,,,
@@ -5,3 +14,4 @@ type,title,fname,lname,ability ,email,,,,"CONCATENATE(B2,C2,""@ku.th"")"
 2,Ms.,Mcdaniel,Cloe ,Data,Ms.Mcdaniel@ku.th,,,,
 1,Mr.,Peter,Parker,Image,Mr.Peter@ku.th,,,,
 3,Mr.,Mack ,Wolfe,Unity,Mr.Mack @ku.th,,,,
+>>>>>>> 02b589eae0662967f342a8c2a9c6c1d3e6e9019b
