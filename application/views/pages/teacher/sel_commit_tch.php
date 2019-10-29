@@ -45,7 +45,7 @@ $topic = "เลือกเป็นกรรมการ(teacher)";
 </head>
 
 <!--############################################## Header ###########################################################################-->
-<header style="height: 12.7vh">
+<header>
     <div id='ui_main'></div>
 </header>
 
@@ -102,15 +102,21 @@ $topic = "เลือกเป็นกรรมการ(teacher)";
                         <datalist id="browsers">
                             <?php for ($i = 1; $i <= sizeof($group_ids); $i++) {
                                 echo "<tr>
-                                        <td>'<option>$i</option>' ?></td>
+                                        <td><option>$i</option></td>
                                     </tr>";
                             }
                             ?>
+                            <tr>
+                                <td>
+                                    <option>99</option>
+                                </td>
+                            </tr>
                         </datalist>
                         <div>
+                            <p style='color: red'>***กลุ่มที่ไม่ได้เลือกจะถูกกำหนดให้มีความสำคัญเท่ากัน***</p>
                             <br>
                             <?php $size = sizeof($group_ids);
-                                echo"<button name='submit' class='btn colora' value='$size'>ยืนยัน</button>";
+                            echo "<button name='submit' class='btn colora' value='$size'>ยืนยัน</button>";
                             ?>
                         </div>
                     </form>

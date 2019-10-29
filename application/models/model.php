@@ -8,7 +8,10 @@ class model extends CI_model
   private $db_request = 'request';
   private $db_score = 'score';
   private $db_notice = 'notice';
-
+  public function __construct()
+  {
+      parent::__construct();
+  }
   public function insert_tch($data)
   {
     $this->db->insert($this->db_teacher, $data);
@@ -126,18 +129,6 @@ class model extends CI_model
   //   }
   //   return $query;
   // }
-  public function del($data)
-  {
-    $user = $data['user_name'];
-    $this->db->where('user_name', $user);
-    $this->db->delete($this->logindb, $data);
-  }
-  public function upcolor($arr)
-  {
-    $user = $arr['user_name'];
-    $this->db->where('user_name', $user);
-    $this->db->update($this->logindb, $arr);
-  }
 
   public function update_score($score_id, $score_document, $score_knowledge, $score_completly, $score_present)
   {
@@ -157,4 +148,142 @@ class model extends CI_model
     $this->db->where('group_id', $group_id);
     $this->db->update('group');
   }
+
+  public function upcolor($arr)
+  {
+    $group_id = $arr['group_id'];
+    $this->db->where('group_id',$group_id);
+    $this->db->update($this->db_group,$arr);
+  }
+  public function log($uparr)
+  {
+    $id = $uparr['teacher_id'];
+    $this->db->select('*');
+    $this->db->from($this->db_teacher);
+    $this->db->where('teacher_id',$id);
+
+    $query = $this->db->get();
+    return $query;
+  }
+  public function update($uparr)
+  {
+    $teacher_id = $uparr['teacher_id'];
+    $this->db->where('teacher_id',$teacher_id);
+    $this->db->update($this->db_teacher,$uparr);
+  }
+
+  public function del($uparr)
+  {
+    $teacher_id= $uparr['teacher_id'];
+    $this->db->where('teacher_id',$teacher_id);
+    $this->db->delete($this->db_teacher,$uparr);
+  }
+  ////////importfilecsv//////////////////////////
+  public function get_addressbook()
+  {
+      $query = $this->db->get('student');
+      if ($query->num_rows() > 0) {
+          return $query->result_array();
+      } else {
+          return FALSE;
+      }
+  }
+  public function insert_csv($data)
+  {
+      $this->db->insert('student', $data);
+  }
+  // ////////end std////////////////
+  public function get_addresstch()
+  {
+      $query = $this->db->get('teacher');
+      if ($query->num_rows() > 0) {
+          return $query->result_array();
+      } else {
+          return FALSE;
+      }
+  }
+  public function inserttch_csv($data)
+  {
+      $this->db->insert('teacher', $data);
+  }
+  // ///////////////////end_importfilecsv///////////////////////////////
+  //////////////// edit datastd_ad////////////////////////////
+  public function r_show_student($data)
+  {
+    $student_id = $data['student_id'];
+    $this->db->select("*");
+    $this->db->from("student");
+    $this->db->where('student_id',$student_id);
+    $query = $this->db->get();
+    // foreach ($query->result() as $row)
+    // {
+    //          echo  "ID is ".$row->student_id."<br>";
+    //         echo "password is ".$row->fname."<br><br>";
+    //          echo $row->lname."<br><br>"; //แสดงค่า user_pass ทั้งหมด
+    // }
+
+    return $query;
+  }
+  public function update_std($uparr)
+  {
+    $student_id = $uparr['student_id'];
+    $this->db->where('student_id',$student_id);
+    $this->db->update($this->db_student,$uparr);
+  }
+  public function delstd_ad($uparr)
+  {
+    $student_id= $uparr['student_id'];
+    $this->db->where('student_id',$student_id);
+    $this->db->delete($this->db_student,$uparr);
+  }
+  // public function updategroup_std($uparr)
+  // {
+  //   $student_id = $uparr['student_id'];
+  //   $data = array('student_student_id_1'=>'null');
+  //   $this->db->where('student_student_id_1',$student_id);
+  //   $this->db->update($this->db_group,$data);
+  // }
+  // public function delstdmem_ad($uparr)
+  // {
+  //   $student_id= $uparr['student_id'];
+  //   $this->db->where('student_id',$student_id);
+  //   $this->db->delete($this->db_student,$uparr);
+  // }
+
+
+
+  //////////// end edit datastd_ad///////////////////////
+  // //////////edit del teacher/////////////////////////
+  public function r_show_teacher($data)
+  {
+    $teacher_id = $data['teacher_id'];
+    $this->db->select("*");
+    $this->db->from("teacher");
+    $this->db->where('teacher_id',$teacher_id);
+    $query = $this->db->get();
+    return $query;
+  }
+  public function update_tch($uparr)
+  {
+    $teacher_id = $uparr['teacher_id'];
+    $this->db->where('teacher_id',$teacher_id);
+    $this->db->update($this->db_teacher,$uparr);
+  }
+  public function deltch_ad($uparr)
+  {
+    $teacher_id= $uparr['teacher_id'];
+    $this->db->where('teacher_id',$teacher_id);
+    $this->db->delete('teacher',$uparr);
+    // $this->db->where('teacher_teacher_id',$teacher_id);
+    // $this->db->delete('group');
+  }
+  public function deltchcom1_ad($uparr)
+  {
+    $teacher_id= $uparr['teacher_id'];
+    $this->db->where('teacher_teacher_id',$teacher_id);
+    $this->db->delete('group');
+  }
+
+
+
 }

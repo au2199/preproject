@@ -58,8 +58,8 @@ $topic = "สร้างโปรเจค(teacher)";
 </head>
 
 <!--############################################## Header ###########################################################################-->
-<header style="height: 13%">
-	<div id='ui_main'></div>
+<header>
+    <div id='ui_main'></div>
 </header>
 
 <!--############################################## Body ###########################################################################-->
@@ -74,13 +74,13 @@ $topic = "สร้างโปรเจค(teacher)";
     // echo $show_err['error'];
     // print_r($show_err);
     ?>
-	<div class="container-fluid text-center">
-		<div class="row">
-			<!-- Bar -->
-			<div class="col-sm-2 colora" style="min-height: 87.3vh">
-				<div id='ui_tab'></div>
-			</div>
-			<!-- End Bar -->
+    <div class="container-fluid text-center">
+        <div class="row">
+            <!-- Bar -->
+            <div class="col-sm-2 colora" style="min-height: 87.3vh">
+                <div id='ui_tab'></div>
+            </div>
+            <!-- End Bar -->
             <div class="col-sm-10 text-left bgimg">
                 <div class="colora" style="padding: 10px">
                     <h2><?php echo $topic ?></h2>
@@ -90,30 +90,30 @@ $topic = "สร้างโปรเจค(teacher)";
                     <?php
                     if (!empty($error)) {
                         echo "<div class='alert'>
-                        <span class='closebtn' onclick='this.parentElement.style.display='none';'>&times;</span>
-                        <strong>Danger!</strong> Indicates a dangerous or potentially negative action.
-                        </div>";
+                            <span class='closebtn' onclick='this.parentElement.style.display='none';'>&times;</span>
+                            <strong>Danger!</strong> Indicates a dangerous or potentially negative action.
+                            </div>";
                     }
                     ?>
                     <form action="<?= base_url('Controller/register') ?>" method='post'>
-                        <input name="teacher_id" value="<?php echo rand(1,6) ?>" style="display: none"> <!-- SEND DATA 'teacher_id' TO CONTROLLER -->
+                        <input name="teacher_id" value="<?php echo rand(1, 6) ?>" style="display: none"> <!-- SEND DATA 'teacher_id' TO CONTROLLER -->
                         <!-- <input type='text' name='teacher_teacher_id' value='' placeholder='teacher_teacher_id'> -->
                         <div class="row">
                             <div class="col table table-bordered table-striped">
                                 <br>
                                 <p style=" font-size:20px;"><b>ชื่อ project</b></p>
-                                <input type='text' name='name_project' class="form-control" value='' placeholder='name_project'>
+                                <input type='text' name='name_project' class="form-control" value='' placeholder='Pre-Project Management Web'>
                                 <p style="font-size:20px;"><b>รายละเอียด project</b></p>
-                                <input type='text' name='info_project' class="form-control" value='' placeholder='info_project'>
+                                <input type='text' name='info_project' class="form-control" value='' placeholder='เว็บไซด์สรหับจัดการพรีโปรเจค'>
 
                             </div>
                             <div class="col table table-bordered table-striped">
                                 <!-- <input type='text' name='info_project' value='' placeholder='info_project'> -->
                                 <br>
                                 <p style=" font-size:20px;"><b>ชื่อสมาชิก</b></p>
-                                <input list="browsers" name="student_student_id_1" class="form-control" value=''>
-                                <input list="browsers" name="student_student_id_2" class="form-control" value=''>
-                                <input list="browsers" name="student_student_id_3" class="form-control" value=''>
+                                <input list="browsers" name="student_student_id_1" class="form-control 1" value='' id='reset1' placeholder='1 Mack Randolph'>
+                                <input list="browsers" name="student_student_id_2" class="form-control 2" value='' id='reset2' placeholder='2 Raees Gibbons'>
+                                <input list="browsers" name="student_student_id_3" class="form-control 3" value='' id='reset3' placeholder='3 Dora Zhang'>
                                 <datalist id="browsers">
                                     <?php foreach ($show_std->result() as $row) : ?>
                                         <tr>
@@ -123,11 +123,9 @@ $topic = "สร้างโปรเจค(teacher)";
                                 </datalist>
                             </div>
                         </div>
-                        <div class="container" style="text-align: center;">
                             <br>
                             <button name='submit' class="btn colora" value='create_group'>ยืนยัน</button>
                             <!-- <button name='submit' class="btn colora " value='edit_group'>แก้ไข</button> -->
-                        </div>
                     </form>
                     <!-- <select class="mdb-select md-form colorful-select dropdown-primary" searchable="Search here..">
 								<option value="1">Option 1</option>
@@ -153,6 +151,20 @@ $topic = "สร้างโปรเจค(teacher)";
 <!-- ###############################################       SCRIPT       ################################################# -->
 <!-- #################################################################################################################### -->
 <!-- #################################################################################################################### -->
+<script>
+    $(document).ready(function() {
+        $("#reset1").click(function() {
+            $(".1").val("");
+        });
+        $("#reset2").click(function() {
+            $(".2").val("");
+        });
+        $("#reset3").click(function() {
+            $(".3").val("");
+        });
+    });
+</script>
+
 <style>
     * {
         box-sizing: border-box;
@@ -183,27 +195,6 @@ $topic = "สร้างโปรเจค(teacher)";
 
     .show {
         display: block;
-    }
-
-    .alert {
-        padding: 20px;
-        background-color: #f44336;
-        color: white;
-    }
-
-    .closebtn {
-        margin-left: 15px;
-        color: white;
-        font-weight: bold;
-        float: right;
-        font-size: 22px;
-        line-height: 20px;
-        cursor: pointer;
-        transition: 0.3s;
-    }
-
-    .closebtn:hover {
-        color: black;
     }
 </style>
 

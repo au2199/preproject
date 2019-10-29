@@ -3,7 +3,7 @@
 
 <?php
 $web = "KUCPE";
-$topic = "ดูคะแนน(other)";
+$topic = "แก้ไข้คะแนน(admin)";
 
 ?>
 
@@ -111,16 +111,23 @@ $topic = "ดูคะแนน(other)";
                             $score_knowledge = $score_knowledges[$i];
                             $score_completly = $score_completlys[$i];
                             $score_present = $score_presents[$i];
-                            echo "<tr>
-                                    <td>$name_projects[$i]</td>
-                                    <td>$score_document</td>
-                                    <td>$score_knowledge</td>
-                                    <td>$score_completly</td>
-                                    <td>$score_present</td>
-                                </tr>";
-                        }
-                        ?>
+                            ?>
+                            <form action='<?= base_url('Controller/edit_score') ?>' method='post'>
+                            <?php
+                                echo "
+                                    <tr>
+                                        <td><input class='btn colora' type='submit' name='group_name' value='$name_projects[$i]'></td>
+                                        <td><input class='form-control' name='score_document$i' value='$score_document'></td>
+                                        <td><input class='form-control' name='score_knowledge$i' value='$score_knowledge'></td>
+                                        <td><input class='form-control' name='score_completly$i' value='$score_completly'></td>
+                                        <td><input class='form-control' name='score_present$i' value='$score_present'></td>
+                                        <input style='display: none' name='i' value='$i'>
+                                    </tr>
+                                </form>";
+                            }
+                            ?>
                     </table>
+                    <p style='color: red'>***กดชื่อกลุ่มเพื่อเปลี่ยนคะแนนกลุ่มที่ต้องการ***</p>
                     <!-- Body -->
                 </div>
             </div>

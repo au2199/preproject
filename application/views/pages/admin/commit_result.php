@@ -45,7 +45,7 @@ $topic = "ผลการเลือกกรรมการ(admin)";
 </head>
 
 <!--############################################## Header ###########################################################################-->
-<header style="height: 12.7vh">
+<header>
     <div id='ui_main'></div>
 </header>
 
@@ -70,7 +70,7 @@ $topic = "ผลการเลือกกรรมการ(admin)";
     <div class="container-fluid text-center">
         <div class="row">
             <!-- Bar -->
-            <div class="col-sm-2 colora" style="min-height: 87.3vh">
+            <div class="col-sm-2 colora" style="min-height: 100vh">
                 <div id='ui_tab'></div>
             </div>
             <!-- End Bar -->
@@ -80,60 +80,60 @@ $topic = "ผลการเลือกกรรมการ(admin)";
                 </div>
                 <div class="container-fluid well">
                     <!-- Body -->
-                    <?php
-                    if ($state) {
-                        echo "<div><center><h3>อยู่ระหว่างการดำเนินการ</h3></center</div>";
-                    } else {
-                        ?>
-                        <table class="table table-bordered table-striped">
-                            <tr>
-                                <th>
-                                    <center>กลุ่ม</center>
-                                </th>
-                                <th>
-                                    <center>กรรมการ</center>
-                                </th>
-                                <th>
-                                    <center>กรรมการ</center>
-                                </th>
-                            </tr>
+                    <form action="<?= base_url('Controller/commit_result') ?>" method='post'>
                         <?php
-                            for ($i = 0; $i < sizeof($name_projects); $i++) {
-                                $c = $i;
-                                $c1 = "";
-                                $c2 = "";
-                                $name_c1 = "";
-                                $name_c2 = "";
-                                if ($c >= sizeof($fnames) - 2) {
-                                    $c = sizeof($fnames) - (sizeof($fnames) - 2);
-                                }
-                                foreach ($show_grp->result() as $row_grp) {
-                                    if ($row_grp->group_id == $group_ids[$i]) {
-                                        $c1 = $row_grp->teacher_commit_id_1;
-                                        $c2 = $row_grp->teacher_commit_id_2;
+                        if ($state) {
+                            echo "<div><center><h3>อยู่ระหว่างการดำเนินการ</h3></center</div>";
+                        } else {
+                            ?>
+                            <table class="table table-bordered table-striped">
+                                <tr>
+                                    <th>
+                                        <center>กลุ่ม</center>
+                                    </th>
+                                    <th>
+                                        <center>กรรมการ</center>
+                                    </th>
+                                    <th>
+                                        <center>กรรมการ</center>
+                                    </th>
+                                </tr>
+                            <?php
+                                for ($i = 0; $i < sizeof($name_projects); $i++) {
+                                    $c = $i;
+                                    $c1 = "";
+                                    $c2 = "";
+                                    $name_c1 = "";
+                                    $name_c2 = "";
+                                    if ($c >= sizeof($fnames) - 2) {
+                                        $c = sizeof($fnames) - (sizeof($fnames) - 2);
                                     }
-                                }
-                                foreach ($show_tch->result() as $row_tch) {
-                                    if ($row_tch->teacher_id == $c1) {
-                                        $name_c1 = $row_tch->fname;
+                                    foreach ($show_grp->result() as $row_grp) {
+                                        if ($row_grp->group_id == $group_ids[$i]) {
+                                            $c1 = $row_grp->teacher_commit_id_1;
+                                            $c2 = $row_grp->teacher_commit_id_2;
+                                        }
                                     }
-                                    if ($row_tch->teacher_id == $c2) {
-                                        $name_c2 = $row_tch->fname;
+                                    foreach ($show_tch->result() as $row_tch) {
+                                        if ($row_tch->teacher_id == $c1) {
+                                            $name_c1 = $row_tch->fname;
+                                        }
+                                        if ($row_tch->teacher_id == $c2) {
+                                            $name_c2 = $row_tch->fname;
+                                        }
                                     }
-                                }
-                                echo "<tr>
+                                    echo "<tr>
                                         <td>" . $name_projects[$i] . "</td>
                                         <td>" . $name_c1 . "</td>
                                         <td>" . $name_c2 . "</td>
                                     </tr>";
+                                }
                             }
-                        }
-                        ?>
-                        </table>
-                        <form action="<?= base_url('Controller/commit_result') ?>" method='post'>
+                            ?>
+                            </table>
                             <button name='submit' class="btn colora" value='true'>ยืนยัน</button>
-                        </form>
-                        <!-- Body -->
+                    </form>
+                    <!-- Body -->
                 </div>
             </div>
         </div>

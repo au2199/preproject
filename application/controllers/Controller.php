@@ -8,6 +8,9 @@ class Controller extends CI_Controller
 		$state = false;
 		parent::__construct();
 		$this->load->helper('url');
+
+		$this->load->library('csvimport');
+		$this->load->model('csv_model');
 	}
 
 	/* #################################################################################################################### */
@@ -72,10 +75,6 @@ class Controller extends CI_Controller
 		$data['show'] = $this->model->m_show_notice();
 		$this->load->view('pages/admin/home_admin', $data);
 	}
-	public function importdata_admin()
-	{
-		$this->load->view('pages/admin/importdata_admin');
-	}
 	public function control_room()
 	{
 		// $this->load->model('model');
@@ -101,6 +100,14 @@ class Controller extends CI_Controller
 	{
 		$this->load->view('pages/admin/create_notice');
 	}
+	public function test_score_edit()
+	{
+		$this->load->model('model');
+		$data_grp['show_grp'] = $this->model->m_show_group();
+		$data_sco['show_sco'] = $this->model->m_show_score();
+		$data['show'] = array($data_grp['show_grp'], $data_sco['show_sco']);
+		$this->load->view('pages/admin/test_score_edit', $data);
+	}
 	// Functions
 	public function register_notice()
 	{
@@ -113,6 +120,309 @@ class Controller extends CI_Controller
 		$data['show'] = $this->model->m_show_notice();
 		$this->load->view('pages/admin/home_admin', $data);
 	}
+	// /////////staart edit std//////////////
+	public function datastd_ad()
+	{
+		$this->load->model('model');
+		$data['show'] = $this->model->m_show_student();
+
+		$this->load->view('pages/admin/datastd_ad', $data);
+	}
+	public function editstd_ad($x='')
+	{
+		echo "Welcome".$x;
+		$data = array('student_id'=>$x);
+		$this->load->model('model');
+		// echo "<pre>"; print_r($data); // เอาไว้เช็คค่า id
+		$result['show'] = $this->model->r_show_student($data);
+		// echo "<pre>"; print_r($result); //ดูค่าในข้อมูลที่ส่งมา
+		$this->load->view('pages/admin/editstd_ad',$result);
+	}
+	public function update_std()
+	{
+		$btnup = $this->input->post('up');
+		$btncan = $this->input->post('can');
+		$student_id = $this->input->post('ID');
+		$title = $this->input->post('title');
+		$fname = $this->input->post('fname');
+		$lname = $this->input->post('lname');
+		$email = $this->input->post('email');
+
+		$uparr = array(
+									'student_id' => $this->input->post('ID'),
+                  'title' => $this->input->post('title'),
+                  'fname' => $this->input->post('fname'),
+									'lname' => $this->input->post('lname'),
+									'email' => $this->input->post('email')
+                  );
+
+		$this->load->model('model');
+		// $result = $this->model->log($uparr);
+		 // echo "<pre>";print_r($delarr);
+	 if($btnup == 'up')
+	 {
+				 $this->model->update_std($uparr);
+				 // echo "<script type='text/javascript'>alert('update password success');</script> ";
+				 redirect(base_url('Controller/datastd_ad'));
+	 }
+	 else if($btncan =='can')
+	 {
+				 redirect(base_url('Controller/datastd_ad'));
+	 }
+	}
+	public function delstd_ad($x='')
+	{
+		// echo $x;
+		$data = array('student_id'=>$x);
+		$this->load->model('model');
+		// echo "<pre>"; print_r($data); // เอาไว้เช็คค่า id
+		// $this->model->delstdgroup1_ad($data);
+		// $this->model->delstdgroup2_ad($data);
+		// $this->model->delstdgroup3_ad($data);
+		// $this->model->updategroup_std($data);
+
+		// $this->model->updategroup_std($data);
+		$this->model->delstd_ad($data);
+
+		echo "<script type='text/javascript'>alert('delete password success');</script> ";
+		redirect(base_url('Controller/datastd_ad'));
+	}
+	public function insertstd_ad()
+	{
+		$this->load->view('pages/admin/insertstd_ad');
+		$btn = $this->input->post('submit');
+		$btncan = $this->input->post('can');
+		$data = array(
+			'title' => $this->input->post('titleso'),
+			'fname' => $this->input->post('fnameso'),
+			'lname' => $this->input->post('lnameso'),
+			'email' => $this->input->post('emailso')
+		);
+		$this->load->model('model');
+		if($btn == 'submit')
+		{
+			$this->model->insert_std($data);
+			 echo "<script type='text/javascript'>alert('insert data success');</script> ";
+			// redirect(base_url('Controller/inserttch_ad'));
+		}
+	
+	}
+	// //////////////////////end edit std//////////////////
+	////////////////// start edit del teacher/////////////////////
+	public function datatch_ad()
+	{
+		$this->load->model('model');
+		$data['show'] = $this->model->m_show_teacher();
+		$this->load->view('pages/admin/datatch_ad',$data);
+	}
+	public function edittch_ad($x='')
+	{
+		// echo "Welcome".$x;
+		$data = array('teacher_id'=>$x);
+		$this->load->model('model');
+		// echo "<pre>"; print_r($data); // เอาไว้เช็คค่า id
+		$result['show'] = $this->model->r_show_teacher($data);
+		// echo "<pre>"; print_r($result); //ดูค่าในข้อมูลที่ส่งมา
+		$this->load->view('pages/admin/edittch_ad',$result);
+	}
+	public function update_tch()
+	{
+		$btnup = $this->input->post('up');
+		$btncan = $this->input->post('can');
+		$teacher_id = $this->input->post('ID');
+		$title = $this->input->post('titleso');
+		$fname = $this->input->post('fnameso');
+		$lname = $this->input->post('lnameso');
+		$ability = $this->input->post('abilityso');
+		$email = $this->input->post('emailso');
+
+		$uparr = array(
+			'teacher_id' => $this->input->post('ID'),
+			'title' => $this->input->post('titleso'),
+			'fname' => $this->input->post('fnameso'),
+			'lname' => $this->input->post('lnameso'),
+			'ability' => $this->input->post('abilityso'),
+			'email' => $this->input->post('emailso')
+		);
+
+			$this->load->model('model');
+		 if($btnup == 'up')
+		 {
+					 $this->model->update_tch($uparr);
+					 // echo "<script type='text/javascript'>alert('update password success');</script> ";
+					 redirect(base_url('Controller/datatch_ad'));
+		 }
+		 else if($btncan =='can')
+		 {
+					 redirect(base_url('Controller/datatch_ad'));
+		 }
+	}
+	public function deltch_ad($x='')
+	{
+		// echo $x;
+		$data = array('teacher_id'=>$x);
+		$this->load->model('model');
+		 $this->model->deltchcom1_ad($data);
+		$this->model->deltch_ad($data);
+
+		redirect(base_url('Controller/datatch_ad'));
+	}
+	public function edit_score()
+	{
+		$i = $this->input->post('i');
+		$group_name = $this->input->post('group_name');
+		$score_document = $this->check_max_score($this->input->post('score_document' . $i));
+		$score_knowledge = $this->check_max_score($this->input->post('score_knowledge' . $i));
+		$score_completly = $this->check_max_score($this->input->post('score_completly' . $i));
+		$score_present = $this->check_max_score($this->input->post('score_present' . $i));
+		$group_id = 0;
+		$this->load->model('model');
+		$show_grp = $this->model->m_show_group();
+		foreach ($show_grp->result() as $row_grp) {
+			if ($row_grp->name_project == $group_name) {
+				$group_id = $row_grp->group_id;
+			}
+		}
+		$this->model->update_score($group_id, $score_document, $score_knowledge, $score_completly, $score_present);
+
+		$data_grp['show_grp'] = $this->model->m_show_group();
+		$data_sco['show_sco'] = $this->model->m_show_score();
+		$data['show'] = array($data_grp['show_grp'], $data_sco['show_sco']);
+		$this->load->view('pages/admin/test_score_edit', $data);
+	}
+public function inserttch_ad()
+{
+	$this->load->view('pages/admin/inserttch_ad');
+	$btn = $this->input->post('submit');
+	$btncan = $this->input->post('can');
+	$data = array(
+		'type' => $this->input->post('typeso'),
+		'title' => $this->input->post('titleso'),
+		'fname' => $this->input->post('fnameso'),
+		'lname' => $this->input->post('lnameso'),
+		'ability' => $this->input->post('abilityso'),
+		'email' => $this->input->post('emailso')
+	);
+	$this->load->model('model');
+	if($btn == 'submit')
+	{
+		$this->model->insert_tch($data);
+		 echo "<script type='text/javascript'>alert('insert data success');</script> ";
+		// redirect(base_url('Controller/inserttch_ad'));
+	}
+}
+	// /////////////////////////end edit del teacher//////////////////
+
+	///////////start_csv////////////////
+	public function importdata_admin()
+	{
+		$this->load->model('model');
+		$data['student'] = $this->model->get_addressbook();
+		$this->load->view('pages/admin/importdata_admin', $data);
+		// $data['student'] = $this->csv_model->get_addressbook();
+		// $this->load->view('pages/admin/importdata_admin',$data);
+	}
+	public function importcsv()
+	{
+		$this->load->model('model');
+		$data['student'] = $this->model->get_addressbook();
+		$data['error'] = '';    //initialize image upload error array to empty
+
+		//convigure upload
+		$config['upload_path'] = './uploads/';
+		$config['allowed_types'] = '*';
+		$config['max_size'] = '1000';
+
+		$this->load->library('upload', $config);
+
+
+		// jika upload gagal, muncul error
+		if (!$this->upload->do_upload()) {
+			$data['error'] = $this->upload->display_errors();
+
+			$this->load->view('pages/admin/importdata_admin', $data);
+		} else {
+
+			//prosses upload csv berhasil serta memproses insert data ke database
+			$file_data = $this->upload->data();
+			$file_path =  './uploads/' . $file_data['file_name'];
+
+			if ($this->csvimport->get_array($file_path)) {
+				$csv_array = $this->csvimport->get_array($file_path);
+				foreach ($csv_array as $row) {
+					$insert_data = array(
+						'title' => $row['title'],
+						'fname' => $row['fname'],
+						'lname' => $row['lname'],
+						'email' => $row['email'],
+					);
+					$this->load->model('model');
+					$this->model->insert_csv($insert_data);
+				}
+				$this->session->set_flashdata('success', 'Csv Data Imported Succesfully');
+				redirect(base_url() . 'Controller/importdata_admin');
+				// echo "<pre>"; print_r($insert_data);
+			} else
+				$data['error'] = "Error occured";
+			$this->load->view('pages/admin/importdata_admin', $data);
+		}
+	}
+	// end std//////////////////////
+	public function importdatatch_ad()
+	{
+		$this->load->model('model');
+		$data['teacher'] = $this->model->get_addresstch();
+		$this->load->view('pages/admin/importdatatch_ad', $data);
+	}
+	public function importcsvtch()
+	{
+		$this->load->model('model');
+		$data['teacher'] = $this->model->get_addresstch();
+		$data['error'] = '';    //initialize image upload error array to empty
+
+		//convigure upload
+		$config['upload_path'] = './uploads/';
+		$config['allowed_types'] = '*';
+		$config['max_size'] = '1000';
+
+		$this->load->library('upload', $config);
+
+
+		// jika upload gagal, muncul error
+		if (!$this->upload->do_upload()) {
+			$data['error'] = $this->upload->display_errors();
+
+			$this->load->view('pages/admin/importdatatch_ad', $data);
+		} else {
+
+			//prosses upload csv berhasil serta memproses insert data ke database
+			$file_data = $this->upload->data();
+			$file_path =  './uploads/' . $file_data['file_name'];
+
+			if ($this->csvimport->get_array($file_path)) {
+				$csv_array = $this->csvimport->get_array($file_path);
+				foreach ($csv_array as $row) {
+					$insert_data = array(
+						'type' => $row['type'],
+						'title' => $row['title'],
+						'fname' => $row['fname'],
+						'lname' => $row['lname'],
+						'ability' => $row['ability'],
+						'email' => $row['email'],
+					);
+					$this->load->model('model');
+					$this->model->inserttch_csv($insert_data);
+				}
+				$this->session->set_flashdata('success', 'Csv Data Imported Succesfully');
+				redirect(base_url() . 'Controller/importdatatch_ad');
+				// echo "<pre>"; print_r($insert_data);
+			} else
+				$data['error'] = "Error occured";
+			$this->load->view('pages/admin/importdatatch_ad', $data);
+		}
+	}
+	//////end_csv//////////////////
+	// okpokpokpokpokpokpokpokpokpokp//
 
 	/* #################################################################################################################### */
 	/* ###########################################      OTHER      ######################################################## */
@@ -173,7 +483,9 @@ class Controller extends CI_Controller
 	public function test_score()
 	{
 		$this->load->model('model');
-		$data['show'] = $this->model->m_show_group();
+		$data_grp['show_grp'] = $this->model->m_show_group();
+		$data_err['show_err'] = array('error' => '');
+		$data['show'] = array($data_grp['show_grp'], $data_err['show_err']);
 		$this->load->view('pages/teacher/test_score', $data);
 	}
 	public function create_group()
@@ -284,6 +596,7 @@ class Controller extends CI_Controller
 				if ($show_score->num_rows() > 0) {
 					foreach ($show_score->result() as $row_score) { }
 				}
+				$this->load->model('model');
 				if (!empty($this->input->post('student_student_id_1')) && !empty($this->input->post('student_student_id_2') && !empty($this->input->post('student_student_id_3')))) {
 					$data = array(
 						'data' => 'www.googledrive.com',
@@ -317,26 +630,22 @@ class Controller extends CI_Controller
 						'teacher_commit_id_2' => $this->input->post('teacher_id'),
 					);
 				}
-				$this->load->model('model');
 				$this->model->insert_group($data);
-				$data_std['show_std'] = $this->model->m_show_student();
 				$data_err['show_err'] = array('error' => '');
-				$data['show'] = array($data_std['show_std'], $data_err['show_err']);
-				$this->load->view('pages/teacher/create_group', $data);
 			} else {
 				// echo "NOT COMPLETE";
-				$this->load->model('model');
-				$data_std['show_std'] = $this->model->m_show_student();
 				$data_err['show_err'] = array('error' => 'error');
-				$data['show'] = array($data_std['show_std'], $data_err['show_err']);
-				$this->load->view('pages/teacher/create_group', $data);
 			}
+			$this->load->model('model');
+			$data_std['show_std'] = $this->model->m_show_student();
+			$data['show'] = array($data_std['show_std'], $data_err['show_err']);
+			$this->load->view('pages/teacher/create_group', $data);
 		}
 	}
 	public function cal_sel_commit_tch()
 	{
 		$this->load->model('model');;
-		for ($i = 1; $i <= $this->input->post('submit'); $i++) { 
+		for ($i = 1; $i <= $this->input->post('submit'); $i++) {
 			echo $this->input->post($i);
 		}
 		$data['show'] = $this->model->m_show_group();
@@ -352,21 +661,33 @@ class Controller extends CI_Controller
 	}
 	public function update_score()
 	{
-		$group_name = $this->input->post('group_name');
-		$score_document = $this->check_max_score($this->input->post('score_document'));
-		$score_knowledge = $this->check_max_score($this->input->post('score_knowledge'));
-		$score_completly = $this->check_max_score($this->input->post('score_completly'));
-		$score_present = $this->check_max_score($this->input->post('score_present'));
-		$group_id = 0;
-		$this->load->model('model');
-		$show_grp = $this->model->m_show_group();
-		foreach ($show_grp->result() as $row_grp) {
-			if ($row_grp->name_project == $group_name) {
-				$group_id = $row_grp->group_id;
+		if (!empty($this->input->post('group_name')) && !empty($this->input->post('score_document')) && !empty($this->input->post('score_knowledge')) && !empty($this->input->post('score_completly')) && !empty($this->input->post('score_present'))) {
+			$weight_document = $this->input->post('weight_document');
+			$weight_knowledge = $this->input->post('weight_knowledge');
+			$weight_completly = $this->input->post('weight_completly');
+			$weight_present = $this->input->post('weight_present');
+
+			$group_name = $this->input->post('group_name');
+			$score_document = $this->check_max_score($this->input->post('score_document')) * $weight_document;
+			$score_knowledge = $this->check_max_score($this->input->post('score_knowledge')) * $weight_knowledge;
+			$score_completly = $this->check_max_score($this->input->post('score_completly')) * $weight_completly;
+			$score_present = $this->check_max_score($this->input->post('score_present')) * $weight_present;
+			$group_id = 0;
+			$this->load->model('model');
+			$show_grp = $this->model->m_show_group();
+			foreach ($show_grp->result() as $row_grp) {
+				if ($row_grp->name_project == $group_name) {
+					$group_id = $row_grp->group_id;
+				}
 			}
+			$this->model->update_score($group_id, $score_document, $score_knowledge, $score_completly, $score_present);
+			$data_err['show_err'] = array('error' => '');
+		} else {
+			$data_err['show_err'] = array('error' => 'error');
 		}
-		$this->model->update_score($group_id, $score_document, $score_knowledge, $score_completly, $score_present);
-		$data['show'] = $this->model->m_show_group();
+		$this->load->model('model');
+		$data_grp['show_grp'] = $this->model->m_show_group();
+		$data['show'] = array($data_grp['show_grp'], $data_err['show_err']);
 		$this->load->view('pages/teacher/test_score', $data);
 	}
 
