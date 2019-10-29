@@ -2,7 +2,7 @@
 <html lang='en' dir='ltr'>
 <?php
 $web = "KUCPE";
-$topic = "edit_std";
+$topic = "แก้ไขข้อมูล";
 
 ?>
 <!--############################################## Head ###########################################################################-->
@@ -59,12 +59,14 @@ $topic = "edit_std";
 	$group_id = array();
 	$info_project = array();
 	$name_project = array();
+	$name_project_eng = array();
 	
 	foreach ($show->result() as $row) {
 		array_push($group_id, $row->group_id);
 		array_push($info_project, $row->info_project);
 		array_push($name_project, $row->name_project);
-		$count++;
+		array_push($name_project_eng, $row->name_project_eng);
+		//$count++;
 		// echo $row->fname;
 	}
 	
@@ -82,25 +84,59 @@ $topic = "edit_std";
 				<div class="colora" style="padding: 10px">
 					<h2><?php echo $topic ?></h2>
 				</div>
-				<div class="container-fluid well">
+				<div class="container-fluid well text-center">
 					<table class="table table-bordered table-striped">
 						<form action="<?= base_url('Controller/update_project') ?>" method='post'>
 							<table class="table table-bordered table-striped ">
 	                          
-	                             <tr>
-	                                <td class="colora">name_project</td>
-	                                <td><input class="form-control" type="text" name="name_project" value="<?php echo $name_project[0] ?>" placeholder=''></td>
+	                            <tr>
+	                                <td class="colora">ชื่อโปรเจค</td>
+	                                <td ><input class="form-control" type="text" name="name_project" value="<?php echo $name_project[0] ?>" placeholder=''></td>
 	                            </tr>
 	                            <tr>
-	                                <td class="colora">info project</td>
-	                                <td><textarea class="form-control" rows="5" name="info_project" value=""><?php echo $info_project[0]?></textarea></td>
+	                                <td class="colora">Project Name</td>
+	                                <td ><input class="form-control" type="text" name="name_project_eng" value="<?php echo $name_project_eng[0] ?>" placeholder=''></td>
+	                            </tr>
+	                            <tr>
+	                                <td class="colora" >info project</td>
+	                                <td><textarea class="form-control" rows="5" name="info_project" value="<?php echo $info_project[0]?>"><?php echo $info_project[0]?></textarea></td>
 	                            </tr>
 	                        </table>
 	                        
 	                        <button name='submit' class="btn colora" value='update_project'>ยืนยัน</button>
 	                    </form>
+
+					</table>
+					<table class="table table-bordered table-striped ">
+						
+	                    <form action="<?= base_url('Controller/myGroup') ?>" method='post'>
+								<button class='btn colora' value='1'>back
+									<input name="group_id" value="1" style="display: none">
+
+								</button>
+						</form>
 					</table>
 				</div>
+
+				<div>
+					
+				</div>
+				<!--test-->
+				<!-- <div class="container-fluid text-center">
+				  
+				  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+				  
+				  <div class="modal fade" id="myModal" role="dialog">
+				    <div class="modal-dialog modal-lg">
+				      
+				      <div class="modal-content">
+				        <div class="modal-body">
+				          <p>Some text in the modal.</p>
+					    </div>
+					  </div>
+					</div>
+				 </div>
+				</div> -->
 				<!-- </div> -->
 			</div>
 		</div>

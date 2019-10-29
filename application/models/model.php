@@ -149,10 +149,11 @@ class model extends CI_model
     $this->db->update('score');
   }
 
-  public function update_project($info_project,$group_id,$name_project)
+  public function update_project($info_project,$group_id,$name_project,$name_project_eng)
   {
     $this->db->set('info_project', $info_project);
     $this->db->set('name_project', $name_project);
+    $this->db->set('name_project_eng', $name_project_eng);
     $this->db->where('group_id', $group_id);
     $this->db->update('group');
   }

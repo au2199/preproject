@@ -61,6 +61,7 @@ $topic = "กลุ่มของฉัน(other)";
 	foreach ($show_grp->result() as $row_grp) {
 		$group_id = $row_grp->group_id;
 		$name_project = $row_grp->name_project;
+		$name_project_eng = $row_grp->name_project_eng;
 		$info_project = $row_grp->info_project;
 		$teacher_id = $row_grp->teacher_teacher_id;
 		array_push($student_ids, $row_grp->student_student_id_1);
@@ -71,11 +72,19 @@ $topic = "กลุ่มของฉัน(other)";
 		if ($row_std->student_id == $student_ids[0]) {
 			$student_name_1 = $row_std->fname . $row_std->lname;
 		}
-		else if ($row_std->student_id == $student_ids[1]) {
-			$student_name_2 = $row_std->fname . $row_std->lname;
+		if(is_null($student_ids[1])){
+			$student_name_2 = null;
+		}else{
+			if($row_std->student_id == $student_ids[1]) {
+				$student_name_2 = $row_std->fname ." ". $row_std->lname;
+			}
 		}
-		else if ($row_std->student_id == $student_ids[2]) {
-			$student_name_3 = $row_std->fname . $row_std->lname;
+		if(is_null($student_ids[2])){
+				$student_name_3= null;
+		}else{
+			if ($row_std->student_id == $student_ids[2]) {
+				$student_name_3 = $row_std->fname . $row_std->lname;
+			}
 		}
 	}
 	foreach ($show_tch->result() as $row_tch) { 
@@ -109,7 +118,7 @@ $topic = "กลุ่มของฉัน(other)";
 										</tr>
 										<tr>
 											<td class='colora'>ชื่อภาษาอังกฤษ</td>
-											<td>$name_project</td>
+											<td>$name_project_eng</td>
 										</tr>
 								</table>
 								<table class='table table-bordered table-striped'>
@@ -151,9 +160,14 @@ $topic = "กลุ่มของฉัน(other)";
 											</tr>
 									</table>
 								</div>
-								<button class='btn colora'>แก้ไข</button>";
+								";
 							?>
+							<form action="<?= base_url('Controller/edit_project') ?>">
+								<button class='btn colora' value='edit_project'>แก้ไข</button>
+							</form>
+							
 						</div>
+
 					</div>
 					<!-- Body -->
 				</div>
