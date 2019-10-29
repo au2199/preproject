@@ -43,14 +43,23 @@ A importdata_admin
 <a href="<?= base_url('Controller/test_score') ?>"> ให้คะแนน
     <!-- <img src="<?= base_url('./image/score.png') ?>" class="img-circle" height="65" width="65" alt="Avatar"> -->
 </a><br>
-<a href="<?= base_url('Controller/test_score_edit') ?>"> แก้ไข้ให้คะแนน(admin)
-    <!-- <img src="<?= base_url('./image/score.png') ?>" class="img-circle" height="65" width="65" alt="Avatar"> -->
-</a><br>
+
+<!-- #################################################################################################################### -->
+<!-- #################################################################################################################### -->
+<!-- ###############################################       OTHER       ################################################## -->
+<!-- #################################################################################################################### -->
+<!-- #################################################################################################################### -->
+<br>
+
+
 <a href="<?= base_url('Controller/test_room') ?>"> ผลจัดห้องสอบ(ส่วนรวม)
     <!-- <img src="<?= base_url('./image/exams.png') ?>" class="img-circle" height="65" width="65" alt="Avatar"> -->
 </a><br>
 <a href="<?= base_url('Controller/commit_show') ?>"> กรรมการ(ส่วนรวม)
     <!-- <img src="<?= base_url('./image/result_com.png') ?>" class="img-circle" height="65" width="65" alt="Avatar"> -->
+</a><br>
+<a href="<?= base_url('Controller/test_show') ?>"> ดูคะแนน(ส่วนรวม)
+    <!-- <img src="<?= base_url('./image/importdata_admin.png') ?>" class="img-circle" height="65" width="65" alt="Avatar"> -->
 </a><br>
 
 <!-- #################################################################################################################### -->
@@ -58,21 +67,23 @@ A importdata_admin
 <!-- ###############################################       ADMIN       ################################################## -->
 <!-- #################################################################################################################### -->
 <!-- #################################################################################################################### -->
-<a href="<?= base_url('Controller/control_room') ?>"> จัดห้องสอบ(admin)
-    <!-- <img src="<?= base_url('./image/exams.png') ?>" class="img-circle" height="65" width="65" alt="Avatar"> -->
-</a><br>
+<br>
+
 <a href="<?= base_url('Controller/home_admin') ?>"> ประกาศ (admin)
     <!-- <img src="<?= base_url('./image/img_home.png') ?>" class="img-circle" height="65" width="65" alt="Avatar"> -->
 </a><br>
+<a href="<?= base_url('Controller/control_room') ?>"> จัดห้องสอบ(admin)
+    <!-- <img src="<?= base_url('./image/exams.png') ?>" class="img-circle" height="65" width="65" alt="Avatar"> -->
+</a><br>
 <a href="<?= base_url('Controller/commit_result') ?>"> ผลการเลือกกรรมการ(admin)
     <!-- <img src="<?= base_url('./image/last_com.png') ?>" class="img-circle" height="65" width="65" alt="Avatar"> -->
+</a><br>
+<a href="<?= base_url('Controller/test_score_edit') ?>"> แก้ไข้ให้คะแนน(admin)
+    <!-- <img src="<?= base_url('./image/score.png') ?>" class="img-circle" height="65" width="65" alt="Avatar"> -->
 </a><br>
 <a href="<?= base_url('Controller/importdata_admin') ?>"> นำข้อมูลเข้านิสิต(admin)
     <!-- <img src="<?= base_url('./image/importdata_admin.png') ?>" class="img-circle" height="65" width="65" alt="Avatar"> -->
 </a><br>
 <a href="<?= base_url('Controller/importdatatch_ad') ?>"> นำข้อมูลเข้าอาจารย์(admin)
-    <!-- <img src="<?= base_url('./image/importdata_admin.png') ?>" class="img-circle" height="65" width="65" alt="Avatar"> -->
-</a><br>
-<a href="<?= base_url('Controller/test_show') ?>"> ดูคะแนน(ส่วนรวม)
     <!-- <img src="<?= base_url('./image/importdata_admin.png') ?>" class="img-circle" height="65" width="65" alt="Avatar"> -->
 </a><br>

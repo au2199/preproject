@@ -45,7 +45,7 @@ $topic = "ให้คะแนน(teacher)";
 </head>
 
 <!--############################################## Header ###########################################################################-->
-<header style="height: 12.7vh">
+<header>
     <div id='ui_main'></div>
 </header>
 
@@ -110,25 +110,39 @@ $topic = "ให้คะแนน(teacher)";
                             </tr>
                             <tr>
                                 <td>คะแนนเล่มโครงงาน</td>
-                                <td><input class="form-control slider" type="range" name="score_document" value="" placeholder='max 25' min='0' max='25'></td>
+                                <td>
+                                    <input onclick="f1()" id='r1' class="form-control slider" type="range" name="score_document" value="0" placeholder='max 25' min='0' max='25'>
+                                    <p id='v1'></p>
+                                </td>
                             </tr>
                             <tr>
                                 <td>คะแนนความรู้ในโครงงาน</td>
-                                <td><input class="form-control slider" type="range" name="score_knowledge" value="" placeholder='max 25' min='0' max='25'></td>
+                                <td>
+                                    <input onclick="f2()" id='r2' class="form-control slider" type="range" name="score_knowledge" value="0" placeholder='max 25' min='0' max='25'>
+                                    <p id='v2'></p>
+                                </td>
                             </tr>
                             <tr>
                                 <td>ความสมบูรณ์ของชิ้นงาน</td>
-                                <td><input class="form-control slider" type="range" name="score_completly" value="" placeholder='max 25' min='0' max='25'></td>
+                                <td>
+                                    <input onclick="f3()" id='r3' class="form-control slider" type="range" name="score_completly" value="0" placeholder='max 25' min='0' max='25'>
+                                    <p id='v3'></p>
+                                </td>
                             </tr>
                             <tr>
                                 <td>การนําเสนอ</td>
-                                <td><input class="form-control slider" type="range" name="score_present" value="" placeholder='max 25' min='0' max='25'></td>
+                                <td>
+                                    <input onclick="f4()" id='r4' class="form-control slider" type="range" name="score_present" value="0" placeholder='max 25' min='0' max='25'>
+                                    <p id='v4'></p>
+                                </td>
                             </tr>
                             <!-- <tr>
                                 <td>เกรด</td>
                                 <td><?php echo "A" ?></td>
                             </tr> -->
                         </table>
+                        <p style='color: red'>***โปรดตรวจสอบว่ากรอกข้อมูลครบทุกช่อง***</p>
+                        <p style='color: red'>***กรณีที่ให้ 0 โปรดระบุ 0 ไว้ด้วย***</p>
                         <button name='submit' class="btn colora" value='update_score'>ยืนยัน</button>
                     </form>
                     <datalist id="browsers">
@@ -165,4 +179,25 @@ $topic = "ให้คะแนน(teacher)";
             $(".1").val("");
         });
     });
+
+    function f1() {
+        var x = document.getElementById("r1").value;
+        document.getElementById("v1").innerHTML = x;
+        // document.getElementById("v1").value = x;
+    }
+
+    function f2() {
+        var x = document.getElementById("r2").value;
+        document.getElementById("v2").innerHTML = x;
+    }
+
+    function f3() {
+        var x = document.getElementById("r3").value;
+        document.getElementById("v3").innerHTML = x;
+    }
+
+    function f4() {
+        var x = document.getElementById("r4").value;
+        document.getElementById("v4").innerHTML = x;
+    }
 </script>

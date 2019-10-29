@@ -45,7 +45,7 @@ $topic = "ผลการเลือกกรรมการ(admin)";
 </head>
 
 <!--############################################## Header ###########################################################################-->
-<header style="height: 12.7vh">
+<header>
     <div id='ui_main'></div>
 </header>
 
@@ -70,7 +70,7 @@ $topic = "ผลการเลือกกรรมการ(admin)";
     <div class="container-fluid text-center">
         <div class="row">
             <!-- Bar -->
-            <div class="col-sm-2 colora" style="min-height: 87.3vh">
+            <div class="col-sm-2 colora" style="min-height: 100vh">
                 <div id='ui_tab'></div>
             </div>
             <!-- End Bar -->

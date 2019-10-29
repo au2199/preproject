@@ -58,7 +58,7 @@ $topic = "สร้างโปรเจค(teacher)";
 </head>
 
 <!--############################################## Header ###########################################################################-->
-<header style="height: 13%">
+<header>
     <div id='ui_main'></div>
 </header>
 
@@ -123,11 +123,9 @@ $topic = "สร้างโปรเจค(teacher)";
                                 </datalist>
                             </div>
                         </div>
-                        <div class="container" style="text-align: center;">
                             <br>
                             <button name='submit' class="btn colora" value='create_group'>ยืนยัน</button>
                             <!-- <button name='submit' class="btn colora " value='edit_group'>แก้ไข</button> -->
-                        </div>
                     </form>
                     <!-- <select class="mdb-select md-form colorful-select dropdown-primary" searchable="Search here..">
 								<option value="1">Option 1</option>
