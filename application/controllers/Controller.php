@@ -120,6 +120,7 @@ class Controller extends CI_Controller
 		$data['show'] = $this->model->m_show_notice();
 		$this->load->view('pages/admin/home_admin', $data);
 	}
+	// /////////staart edit std//////////////
 	public function datastd_ad()
 	{
 		$this->load->model('model');
@@ -175,9 +176,36 @@ class Controller extends CI_Controller
 		$data = array('student_id'=>$x);
 		$this->load->model('model');
 		// echo "<pre>"; print_r($data); // เอาไว้เช็คค่า id
+		// $this->model->delstdgroup1_ad($data);
+		// $this->model->delstdgroup2_ad($data);
+		// $this->model->delstdgroup3_ad($data);
+		// $this->model->updategroup_std($data);
+
+		// $this->model->updategroup_std($data);
 		$this->model->delstd_ad($data);
+
 		echo "<script type='text/javascript'>alert('delete password success');</script> ";
 		redirect(base_url('Controller/datastd_ad'));
+	}
+	public function insertstd_ad()
+	{
+		$this->load->view('pages/admin/insertstd_ad');
+		$btn = $this->input->post('submit');
+		$btncan = $this->input->post('can');
+		$data = array(
+			'title' => $this->input->post('titleso'),
+			'fname' => $this->input->post('fnameso'),
+			'lname' => $this->input->post('lnameso'),
+			'email' => $this->input->post('emailso')
+		);
+		$this->load->model('model');
+		if($btn == 'submit')
+		{
+			$this->model->insert_std($data);
+			 echo "<script type='text/javascript'>alert('insert data success');</script> ";
+			// redirect(base_url('Controller/inserttch_ad'));
+		}
+	
 	}
 	// //////////////////////end edit std//////////////////
 	////////////////// start edit del teacher/////////////////////
@@ -234,7 +262,9 @@ class Controller extends CI_Controller
 		// echo $x;
 		$data = array('teacher_id'=>$x);
 		$this->load->model('model');
+		 $this->model->deltchcom1_ad($data);
 		$this->model->deltch_ad($data);
+
 		redirect(base_url('Controller/datatch_ad'));
 	}
 	public function edit_score()
@@ -260,8 +290,29 @@ class Controller extends CI_Controller
 		$data['show'] = array($data_grp['show_grp'], $data_sco['show_sco']);
 		$this->load->view('pages/admin/test_score_edit', $data);
 	}
-
+public function inserttch_ad()
+{
+	$this->load->view('pages/admin/inserttch_ad');
+	$btn = $this->input->post('submit');
+	$btncan = $this->input->post('can');
+	$data = array(
+		'type' => $this->input->post('typeso'),
+		'title' => $this->input->post('titleso'),
+		'fname' => $this->input->post('fnameso'),
+		'lname' => $this->input->post('lnameso'),
+		'ability' => $this->input->post('abilityso'),
+		'email' => $this->input->post('emailso')
+	);
+	$this->load->model('model');
+	if($btn == 'submit')
+	{
+		$this->model->insert_tch($data);
+		 echo "<script type='text/javascript'>alert('insert data success');</script> ";
+		// redirect(base_url('Controller/inserttch_ad'));
+	}
+}
 	// /////////////////////////end edit del teacher//////////////////
+
 	///////////start_csv////////////////
 	public function importdata_admin()
 	{

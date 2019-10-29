@@ -85,11 +85,11 @@ $topic = "นำข้อมูลเข้าอาจารย์(admin)";
 										<div class="panel panel-default">
 											<div class="panel-body">
 
-<<<<<<< HEAD
+
 												<div class="col-sm-12 col-md-12">
-=======
+
 												<div class="col-sm-12">
->>>>>>> b8494abbdd2d9babe3310dcb6b53ca06334a06f2
+
 
 
 														 <!-- <div class="container" style="margin-top:50px"> -->
@@ -106,7 +106,9 @@ $topic = "นำข้อมูลเข้าอาจารย์(admin)";
 																		 <form method="post" action="<?=base_url('Controller/importcsvtch'); ?>" enctype="multipart/form-data">
 
 																				 <input type="file" class="colora" name="userfile" ><br><br>
-																				 <input type="submit" name="submit" value="UPLOAD" class="btn btn-primary">
+																				 <input type="submit" name="submit" value="UPLOAD" class="btn btn-success">
+																				 <a class='btn-primary btn' href='<?=base_url('Controller/datatch_ad');  ?>' >แก้ไขข้อมูล</a>
+																				 <a class=' btn colora' href='<?=base_url('Controller/inserttch_ad');  ?>'style="font-size:14px;" >เพิ่มข้อมูลอาจาย์</a>
 
 																		 </form>
 

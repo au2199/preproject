@@ -1,7 +1,0 @@
-type,title,fname,lname,ability ,email,,,,"CONCATENATE(B2,C2,""@ku.th"")"
-1,Mr.,Zhang,Dora,OS,Mr.Zhang@ku.th,,,,
-2,Mr.,Gibbons,Raees,AI,Mr.Gibbons@ku.th,,,,
-3,Ms.,Daanish,Wolfe,Game,Ms.Daanish@ku.th,,,,
-4,Ms.,Mcdaniel,Cloe ,Data,Ms.Mcdaniel@ku.th,,,,
-5,Mr.,Peter,Parker,Image,Mr.Peter@ku.th,,,,
-6,Mr.,Mack ,Wolfe,Unity,Mr.Mack @ku.th,,,,

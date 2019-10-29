@@ -3,7 +3,7 @@
 
 <?php
 $web = "KUCPE";
-$topic = "นำข้อมูลเข้านิสิต(admin)";
+$topic = "เพิ่มข้อมูลอาจารย์์";
 
 ?>
 
@@ -22,7 +22,6 @@ $topic = "นำข้อมูลเข้านิสิต(admin)";
 	<!-- Latest compiled JavaScript -->
 	<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js'></script>
 	<script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js'></script>
-
 	<link rel="stylesheet" href="<?php echo base_url() ?>css/style.css">
 	<meta name='viewport' content='width=device-width, initial-scale=1'>
 	<meta charset='utf-8'>
@@ -42,8 +41,7 @@ $topic = "นำข้อมูลเข้านิสิต(admin)";
 			/* z-index: -1; */
 		}
 	</style>
-	<!-- <title><?php echo $web ?></title> -->
-	<title>Import Contact KK</title>
+	<title><?php echo $web ?></title>
 </head>
 
 <!--############################################## Header ###########################################################################-->
@@ -67,13 +65,13 @@ $topic = "นำข้อมูลเข้านิสิต(admin)";
 				</div>
 				<div class="container-fluid well">
 					<!-- Body -->
-
+					<form class="form-horizontal" action="<?= base_url('Controller/insertstd_ad') ?>" method='post'>
 						<div class="row">
 							<div class="col-sm-4"></div>
 							<!-- ///////////////////////////////////////////////// -->
 							<div class="col-sm-4" style="text-align: center;">
 								<label>
-									<h1 style="color:black;">ปีการศึกษา 2562</h1> <!--input type="text"-->
+									<h1 style="color:black;">ปีการศึกษา 2562</h1>
 								</label>
 								<!-- <label><h2>นำข้อมูลเข้านิสิต</h2> </label> -->
 							</div>
@@ -81,84 +79,57 @@ $topic = "นำข้อมูลเข้านิสิต(admin)";
 						</div>
 						<!--//////////////////////////////////////////////////-->
 						<div class="row">
-									<div class="col-sm-12 col-lg-12 col-md-12">
-										<div class="panel panel-default">
-											<div class="panel-body">
-
-												<div class="col-sm-12 col-lg-12 col-md-12">
+            							<div class="col-sm-12">
 
 
-												<div class="col-sm-12">
+                                  <div class="form-group">
+                                    <label for="email" class="control-label col-sm-2">title : </label>
+                                      <div class="col-sm-10">
+                                        <input type='text'  class="form-control"  name='titleso' value='' >
+                                      </div>
+                                  </div>
 
+                                  <div class="form-group">
+                                    <label for="email" class="control-label col-sm-2">firstname :</label>
+                                      <div class="col-sm-10">
+                                        <input type='text' class="form-control" name='fnameso' value='' >
+                                      </div>
+                                  </div>
 
-														 <!-- <div class="container" style="margin-top:50px"> -->
-																	<br>
-																	<?php if (isset($error)): ?>
-																		 <div class="alert alert-error"><?php echo $error; ?></div>
-																 <?php endif; ?>
-																 <?php if ($this->session->flashdata('success') == TRUE): ?>
-																		 <div class="alert alert-success"><?php echo $this->session->flashdata('success'); ?></div>
-																 <?php endif; ?>
+                                  <div class="form-group">
+                                    <label for="email" class="control-label col-sm-2">lastname :</label>
+                                      <div class="col-sm-10">
+                                    	   <input type='text' class="form-control" name='lnameso' value='' >
+                                      </div >
+                                  </div>
 
-																 <h2>Import data csv to mysql</h2>
-																		 <form method="post" action="<?=base_url('Controller/importcsv'); ?>" enctype="multipart/form-data">
-																				 <input type="file" class="colora " name="userfile" ><br><br>
-																				 <input type="submit" name="submit" value="UPLOAD" class="btn btn-success">
-																				 <a class='btn-primary btn' href='<?=base_url('Controller/datastd_ad');  ?>' >แก้ไขข้อมูล</a>
-																				 <a class=' btn colora' href='<?=base_url('Controller/insertstd_ad');  ?>'style="font-size:14px;" >เพิ่มข้อมูลนิสิต</a>
-																		 </form>
+                                  <div class="form-group">
+                                    <label for="email" class="control-label col-sm-2">email :</label>
+                                    <div class="col-sm-10">
+                                  	   <input type='text' class="form-control" name='emailso' value='' >
+                                     </div>
+                                  </div>
 
-																 <br><br>
-																 <table class="table table-striped table-hover table-bordered">
-																		 <caption>Data List student</caption>
-																		 <thead>
-																				 <tr>
-																					 	<th>Title</th>
-																						 <th>First Name</th>
-																						 <th>Last Name</th>
+                                  <div class="form-group">
+                                    <div class="row">
+                                      <div class="col-sm-5"></div>
+                                      <div class="col-sm-7">
+                                        <button type='submit' class='btn-success btn' name='submit' value='submit' >Submit</button>
+                                        <button type='submit' class='btn-danger btn' name='can' value='can' >Cancel</button>
+                                      </div>
 
-																						 <th>Email</th>
-																				 </tr>
-																		 </thead>
-																		 <tbody>
-																				 <?php if ($student == FALSE): ?>
-																						 <tr><td colspan="4">There are currently No Addresses</td></tr>
-																				 <?php else: ?>
-																						 <?php foreach ($student as $row): ?>
-																								 <tr>
-																									  <td><?php echo $row['title']; ?></td>
-																										 <td><?php echo $row['fname']; ?></td>
-																										 <td><?php echo $row['lname']; ?></td>
+                                     </div>
+                                  </div>
 
-																										 <td><?php echo $row['email']; ?></td>
-																										 <!-- <td><?php echo $row['gender']; ?></td>
-																										 <td><?php echo $row['cnt_address']; ?></td> -->
-																								 </tr>
-																						 <?php endforeach; ?>
-																				 <?php endif; ?>
-																		 </tbody>
-																 </table>
-																 <hr>
-
-
-
-																 <!-- <footer>
-																		 <p>&copy;Contact</p>
-																 </footer> -->
-
-														 <!-- </div> -->
-												</div>
-
-											</div>
-										</div>
-									</div>
-						</div>
-
-
-				</div>
-			</div>
-		</div>
-	</div>
+            					</div>
+            				</div>
+                    </div>
+		        </div>
+          </form>
+	       </div>
+      </div>
+    </div>
+  </div>
 </body>
 <!--############################################## Footer ###########################################################################-->
 

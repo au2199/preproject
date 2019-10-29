@@ -144,7 +144,7 @@ $topic = "editstd_ad";
 									</tr>
 								</tdbody>
 							</table>
-              <button type='submit' class='btn-primary btn' name='up' value='up' >Submit</button>
+              <button type='submit' class='btn-success btn' name='up' value='up' >Submit</button>
               <button type='submit' class='btn-danger btn' name='can' value='can'>Cancel</button>
 						</div>
 					</form>

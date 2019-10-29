@@ -227,6 +227,21 @@ class model extends CI_model
     $this->db->where('student_id',$student_id);
     $this->db->delete($this->db_student,$uparr);
   }
+  // public function updategroup_std($uparr)
+  // {
+  //   $student_id = $uparr['student_id'];
+  //   $data = array('student_student_id_1'=>'null');
+  //   $this->db->where('student_student_id_1',$student_id);
+  //   $this->db->update($this->db_group,$data);
+  // }
+  // public function delstdmem_ad($uparr)
+  // {
+  //   $student_id= $uparr['student_id'];
+  //   $this->db->where('student_id',$student_id);
+  //   $this->db->delete($this->db_student,$uparr);
+  // }
+
+
 
   //////////// end edit datastd_ad///////////////////////
   // //////////edit del teacher/////////////////////////
@@ -249,7 +264,16 @@ class model extends CI_model
   {
     $teacher_id= $uparr['teacher_id'];
     $this->db->where('teacher_id',$teacher_id);
-    $this->db->delete($this->db_teacher,$uparr);
+    $this->db->delete('teacher',$uparr);
+    // $this->db->where('teacher_teacher_id',$teacher_id);
+    // $this->db->delete('group');
   }
+  public function deltchcom1_ad($uparr)
+  {
+    $teacher_id= $uparr['teacher_id'];
+    $this->db->where('teacher_teacher_id',$teacher_id);
+    $this->db->delete('group');
+  }
+
 
 }
